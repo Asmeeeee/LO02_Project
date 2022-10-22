@@ -1,7 +1,9 @@
+import strategies.AbstractStrategy;
+
 public class Etudiant {
     
     private int id;
-    private Strategie maStrategie;
+    private AbstractStrategy maStrategie;
     private Zone zone;
     private Joueur joueur;
     private int creditETC = 30;
@@ -80,6 +82,7 @@ public class Etudiant {
     public void jouer(){
         this.maStrategie.jouer();
     }
+    
     public void deployer(Zone z){
         if(this.zone == null){
         }

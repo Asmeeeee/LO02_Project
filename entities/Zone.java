@@ -6,6 +6,10 @@ public class Zone{
     private List<Etudiant> etudiantList;
     private Joueur joueur;
 
+    public Zone(String nom){
+        this.nomZone = nom;
+    }
+
     public int getNombreETC(){
         return 1;
     }

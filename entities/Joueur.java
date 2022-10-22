@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -12,6 +13,8 @@ public class Joueur {
     private List<Etudiant> monEquipe;
 
     public Joueur(){
+        this.mesZones = new ArrayList<>();
+        this.monEquipe = new ArrayList<>();
         this.points = 400;
         this.id = 1;
     }
