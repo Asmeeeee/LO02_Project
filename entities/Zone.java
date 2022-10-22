@@ -10,6 +10,10 @@ public class Zone{
         return 1;
     }
 
+    public List<Etudiant> getEtudiants(){
+        return this.etudiantList;
+    }
+
     public void retirerEtudiant(Etudiant e){
         this.etudiantList.remove(e);
     }

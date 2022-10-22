@@ -13,6 +13,14 @@ public class Etudiant {
     private boolean reserviste = false;
     private String classe = "base";
 
+    public int getCreditETC(){
+        return this.creditETC;
+    }
+
+    public void setCreditETC(int c){
+        this.creditETC = c;
+    }
+
     public int getForce(){
         return this.force;
     }
@@ -61,6 +69,14 @@ public class Etudiant {
         this.classe = classe;
     }
 
+    public boolean getReserviste(){
+        return this.reserviste;
+    }
+
+    public void setReserviste(){
+        this.reserviste = true;
+    }
+
     public void jouer(){
         this.maStrategie.jouer();
     }
@@ -70,7 +86,7 @@ public class Etudiant {
         else{
             this.zone.retirerEtudiant(this);
             this.zone = z;
-            z.ajouterEtudiant(this);
+            this.zone.ajouterEtudiant(this);
         }
     }
 }
