@@ -14,9 +14,11 @@ public class Partie {
     }
 
     public void setJeux(){
+        System.out.println("Création des joueurs");
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         this.lesJoueurs = Arrays.asList(j1, j2);
+        System.out.println("Création des zones");
         Zone z1 = new Zone("La bibliothèque");
         Zone z2 = new Zone("Le Bureau des Etudiants");
         Zone z3 = new Zone("Le Quartier Administratif");
