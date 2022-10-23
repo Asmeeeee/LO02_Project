@@ -11,7 +11,11 @@ public class Zone{
     }
 
     public int getNombreETC(){
-        return 1;
+        int res = 0;
+        for(Etudiant e : etudiantList){
+            res += e.getCreditETC();
+        }
+        return res;
     }
 
     public List<Etudiant> getEtudiants(){
