@@ -1,12 +1,22 @@
 public abstract class EtudiantFactory {
 
-    public static Etudiant getEtudiant(){
-        Etudiant e = new Etudiant();
+    public static void createEtudiant(Joueur j){
+        for(int i = 0; i < 15; i++){
+            getEtudiant(j);
+        }
+        for(int i = 0; i < 3; i++){
+            getEtudiantElite(j);
+        }
+        getMaitreDuGobi(j);
+    }
+
+    public static Etudiant getEtudiant(Joueur j){
+        Etudiant e = new Etudiant(j);
         return e;
     }
 
-    public static Etudiant getEtudiantElite(){
-        Etudiant e = new Etudiant();
+    public static Etudiant getEtudiantElite(Joueur j){
+        Etudiant e = new Etudiant(j);
         e.setForce(1);
         e.setDexterite(1);
         e.setResistance(1);
@@ -16,8 +26,8 @@ public abstract class EtudiantFactory {
         return e;
     }
 
-    public static Etudiant getMaitreDuGobi(){
-        Etudiant e = new Etudiant();
+    public static Etudiant getMaitreDuGobi(Joueur j){
+        Etudiant e = new Etudiant(j);
         e.setForce(2);
         e.setDexterite(2);
         e.setResistance(2);

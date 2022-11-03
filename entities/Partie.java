@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Partie {
 
@@ -25,6 +26,30 @@ public class Partie {
         Zone z4 = new Zone("Les Halles industrielles");
         Zone z5 = new Zone("La Halle Sportive");
         this.lesZones =  Arrays.asList(z1, z2, z3, z4, z5);
+    }
+
+    public void configurationEtudiant(){
+        Scanner myObj = new Scanner(System.in);   
+        for(int i = 0; i <= 1; i++){
+            int y = i+1;
+            System.out.println("################ Joueur " + y + " ##############   Vos crédit ETC"+ this.lesJoueurs.get(i).getPoints());
+            EtudiantFactory.createEtudiant(this.lesJoueurs.get(i)); // Création des etudiants(15etu, 2 elite, 1 maitre)
+            for(Etudiant e : this.lesJoueurs.get(i).getMonEquipe()){
+                System.out.println("----------------------------");
+                e.afficherTerminal();
+                System.out.print("Choississez une caractéristique\n");
+                String reponse = myObj.nextLine();// Read user input
+                e.setCaracteristique(reponse);
+                e.afficherTerminal();
+                System.out.println("----------------------------");
+                try {
+                    Thread.sleep(800);
+                } catch (InterruptedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
+        }
     }
     
 }

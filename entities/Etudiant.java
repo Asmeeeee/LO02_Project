@@ -15,6 +15,19 @@ public class Etudiant {
     private boolean reserviste = false;
     private String classe = "base";
 
+    public Etudiant(Joueur j){
+        this.joueur = j;
+        j.getMonEquipe().add(this);
+    }
+
+    public Joueur getJoueur(){
+        return this.joueur;
+    }
+
+    public void setJoueur(Joueur j){
+        this.joueur = j;
+    }
+
     public int getCreditETC(){
         return this.creditETC;
     }
@@ -92,4 +105,26 @@ public class Etudiant {
             this.zone.ajouterEtudiant(this);
         }
     }
+
+    public void afficherTerminal() {
+        System.out.println("classe: "+this.classe+" force: "+this.force+" dextérité: "+ this.dexterite+" resistance " + 
+        this.resistance+ " constitution: "+this.constitution+ " initiative: "+ this.initiative+ " réserviste: "+this.reserviste);
+    }
+
+    public void setCaracteristique(String reponse) {
+        if(reponse.equals("1")){
+            System.out.println("J augmente la force");
+            this.force += 10;
+        }
+        if(reponse.equals("2"))
+            this.dexterite += 10;
+        if(reponse.equals("3"))
+             this.resistance += 10;   
+        if(reponse.equals("4"))
+            this.constitution += 10;
+        if(reponse.equals("5"))
+            this.initiative += 10;
+        System.out.println("Fin de la caractérisation");
+    }
+    
 }

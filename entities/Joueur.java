@@ -12,6 +12,7 @@ public class Joueur {
     private List<Zone> mesZones;
     private List<Etudiant> monEquipe;
 
+
     public Joueur(){
         this.mesZones = new ArrayList<>();
         this.monEquipe = new ArrayList<>();
@@ -26,6 +27,10 @@ public class Joueur {
     public void setReserviste(Etudiant e){
         e.setReserviste();
     }
+
+public int getPoints(){
+    return this.points;
+}
 
     public void deployerEtudiant(List<Etudiant> le, Zone z){
         for(Etudiant e : le){
@@ -46,5 +51,9 @@ public class Joueur {
         for(Etudiant e : l1){
             e.deployer(z2);
         }
+    }
+
+    public List<Etudiant> getMonEquipe(){
+        return this.monEquipe;
     }
 }

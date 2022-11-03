@@ -5,9 +5,6 @@ import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 public class Executable{
     public static void main(String[]args){
-        Etudiant e1 = EtudiantFactory.getEtudiant();
-        Etudiant e2 = EtudiantFactory.getEtudiantElite();
-        Etudiant e3 = EtudiantFactory.getMaitreDuGobi();
         // System.out.println(e1.getClasse() + " "+e1.getForce());
         // System.out.println(e2.getClasse() + " "+e2.getForce());
         // System.out.println(e3.getClasse() + " "+e3.getForce());
@@ -20,7 +17,7 @@ public class Executable{
         System.out.println("Voulez-vous jouer? y/n");
 
         String reponse = myObj.nextLine();// Read user input
-        if(reponse == "n"){
+        if(reponse == "n" || reponse == "non"){
             System.out.println("Pas de probleme");
             System.out.println("Au revoir");
         }
@@ -28,6 +25,7 @@ public class Executable{
             System.out.println("Creation de la partie");
             Partie partie = new Partie();
             partie.setJeux();
+            partie.configurationEtudiant();
         }
 
     }
