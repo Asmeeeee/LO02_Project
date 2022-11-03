@@ -4,7 +4,7 @@ public abstract class EtudiantFactory {
         for(int i = 0; i < 15; i++){
             getEtudiant(j);
         }
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 4; i++){
             getEtudiantElite(j);
         }
         getMaitreDuGobi(j);

@@ -88,8 +88,8 @@ public class Etudiant {
         return this.reserviste;
     }
 
-    public void setReserviste(){
-        this.reserviste = true;
+    public void setReserviste(Boolean b){
+        this.reserviste = b;
     }
 
     public void jouer(){
@@ -107,24 +107,59 @@ public class Etudiant {
     }
 
     public void afficherTerminal() {
-        System.out.println("classe: "+this.classe+" force: "+this.force+" dextérité: "+ this.dexterite+" resistance " + 
-        this.resistance+ " constitution: "+this.constitution+ " initiative: "+ this.initiative+ " réserviste: "+this.reserviste);
+        System.out.println("classe: "+this.classe+" ,(1)force: "+this.force+" ,(2)dextérité: "+ this.dexterite+" ,(3)resistance " + 
+        this.resistance+ " ,(4)constitution: "+this.constitution+ " ,(5)initiative: "+ this.initiative+ " ,(6)réserviste: "+this.reserviste);
     }
 
     public void setCaracteristique(String reponse) {
-        if(reponse.equals("1")){
-            System.out.println("J augmente la force");
-            this.force += 10;
+        int p = 10;
+        if(this.joueur.getPoints() <= p){
+            System.out.println("PAS ASSEZ DE CREDITS");
         }
-        if(reponse.equals("2"))
-            this.dexterite += 10;
-        if(reponse.equals("3"))
-             this.resistance += 10;   
-        if(reponse.equals("4"))
-            this.constitution += 10;
-        if(reponse.equals("5"))
-            this.initiative += 10;
-        System.out.println("Fin de la caractérisation");
+        else{
+            boolean done = false;
+            switch(reponse){
+                case "1": 
+                this.force += 10;
+                done = true;
+                break;
+    
+                case "2":
+                this.dexterite += 10;
+                done = true;
+                break;
+    
+                case "3":
+                this.resistance += 10;
+                done = true;
+                break;
+    
+                case "4":
+                this.constitution += 10;
+                done = true;
+                break;
+    
+                case "5":
+                this.initiative += 10;
+                done = true;
+                break;
+
+                case "6":
+                this.joueur.managerReserviste(this);
+                break;
+
+                case "":
+                break;
+
+                default:
+                System.out.println("Input non correct");
+                break;
+            }
+            if(done){
+                this.joueur.setPoints(this.joueur.getPoints() - p);
+            }
+            System.out.println("Fin de la caractérisation");
+        }
     }
     
 }

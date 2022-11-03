@@ -7,6 +7,7 @@ public class Joueur {
     private int id;
     private String monProgramme;
     private int points;
+    private int nombreReserviste;
     private boolean estPret;
     private Partie maPartie;
     private List<Zone> mesZones;
@@ -20,17 +21,37 @@ public class Joueur {
         this.id = 1;
     }
 
+    public int getNombreReserviste(){
+        return this.nombreReserviste;
+    }
+
+    public void managerReserviste(Etudiant e){
+        if(e.getReserviste()){
+            e.setReserviste(false);
+        }
+        else{
+            if(this.nombreReserviste < 5){
+                e.setReserviste(true);
+                this.nombreReserviste ++;
+            }
+            else{
+                System.out.println("PAS POSSIBLE, TROP DE RESERVISTE");
+            }
+        }
+    }
+
+
     public void setPret(){
         this.estPret = true;
     }
 
-    public void setReserviste(Etudiant e){
-        e.setReserviste();
+    public int getPoints(){
+        return this.points;
     }
 
-public int getPoints(){
-    return this.points;
-}
+    public void setPoints(int points){
+        this.points = points;
+    }
 
     public void deployerEtudiant(List<Etudiant> le, Zone z){
         for(Etudiant e : le){

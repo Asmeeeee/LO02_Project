@@ -32,24 +32,26 @@ public class Partie {
         Scanner myObj = new Scanner(System.in);   
         for(int i = 0; i <= 1; i++){
             int y = i+1;
-            System.out.println("################ Joueur " + y + " ##############   Vos crédit ETC"+ this.lesJoueurs.get(i).getPoints());
+            System.out.println("################ JOUEUR " + y + " ##############   Vos crédit ETC "+ this.lesJoueurs.get(i).getPoints());
             EtudiantFactory.createEtudiant(this.lesJoueurs.get(i)); // Création des etudiants(15etu, 2 elite, 1 maitre)
             for(Etudiant e : this.lesJoueurs.get(i).getMonEquipe()){
-                System.out.println("----------------------------");
+                System.out.println("----------------------------" + this.lesJoueurs.get(i).getPoints());
                 e.afficherTerminal();
                 System.out.print("Choississez une caractéristique\n");
                 String reponse = myObj.nextLine();// Read user input
                 e.setCaracteristique(reponse);
                 e.afficherTerminal();
-                System.out.println("----------------------------");
-                try {
+                System.out.println("----------------------------" + this.lesJoueurs.get(i).getPoints());
+            /*     try {
                     Thread.sleep(800);
                 } catch (InterruptedException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
+                */
             }
         }
+        System.out.println("################ FIN DE LA CONFIGURATION #################");
     }
     
 }

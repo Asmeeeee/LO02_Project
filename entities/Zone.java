@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Zone{
@@ -8,6 +9,7 @@ public class Zone{
 
     public Zone(String nom){
         this.nomZone = nom;
+        this.etudiantList = new ArrayList();
     }
 
     public int getNombreETC(){
