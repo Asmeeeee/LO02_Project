@@ -1,3 +1,4 @@
+import java.nio.IntBuffer;
 import java.util.Scanner;
 
 import strategies.AbstractStrategy;
@@ -28,6 +29,14 @@ public class Etudiant {
 
     public void setJoueur(Joueur j){
         this.joueur = j;
+    }
+
+    public Zone getZone(){
+        return this.zone;
+    }
+
+    public void setZone(Zone z){
+        this.zone = z;
     }
 
     public int getCreditETC(){
@@ -109,24 +118,29 @@ public class Etudiant {
     }
 
     public void afficherTerminal() {
-        System.out.println("classe: "+this.classe+" ,(1)force: "+this.force+" ,(2)dextérité: "+ this.dexterite+" ,(3)resistance " + 
-        this.resistance+ " ,(4)constitution: "+this.constitution+ " ,(5)initiative: "+ this.initiative+ " ,(6)réserviste: "+this.reserviste);
+        String var = this.reserviste?"oui":"non";
+        System.out.println("|classe: "+this.classe+" |(1)force: "+this.force+" |(2)dextérité: "+ this.dexterite+" |(3)resistance " + 
+        this.resistance+ " |(4)constitution: "+this.constitution+ " |(5)initiative: "+ this.initiative+ " |(6)réserviste: " + var + "|");
     }
 
     public void menuCaracteristique(){
         int p;
         String c = "test";
         Scanner myObj = new Scanner(System.in);  
-        System.out.println("----------------------------" + this.getJoueur().getPoints());
+        Message.liner();
         this.afficherTerminal();
         while(!c.isBlank()){
-            System.out.print("Choississez une caractéristique\n");
+            System.out.print("Choississez une caractéristique   "+ this.getJoueur().getPoints()+" points à dépenser\n");
             c = myObj.nextLine();// Read user inputy
             if(!c.isBlank()){
                 if(!c.equals("6")){
                     System.out.print("Combien de points souhaitez-vous dépenser?\n");
-                    p = Integer.parseInt(myObj.nextLine());
-                    this.setCaracteristique(c, p);
+                    try {
+                        p = Integer.parseInt(myObj.nextLine());
+                        this.setCaracteristique(c, p);
+                    } catch (Exception e) {
+                        Message.IncorrectInput();
+                    }
                 }
                 else{
                     this.setCaracteristique(c,0);
@@ -134,12 +148,41 @@ public class Etudiant {
                 this.afficherTerminal();
             }
         }
-        System.out.println("----------------------------");
+        this.deplacer();
+        Message.liner();
+    }
+
+    public void deplacer(){
+        Scanner myObj = new Scanner(System.in);
+        Message.mapPresentation();
+        System.out.println("Choississez une zone");
+        String reponse = myObj.nextLine();
+        if(!reponse.isBlank()){
+            try {
+                int i = Integer.parseInt(reponse);
+                if(i>0 && i<6){
+                    this.zone = this.joueur.getPartie().getLesZones().get(i-1);
+                    System.out.println("L'étudiant est dorénavent à la zone "+ this.zone.getNomZone());
+                }
+                else{
+                    Message.IncorrectInput();
+                    this.deplacer();
+                }
+            } catch (Exception e) {
+                Message.IncorrectInput();
+                this.deplacer();
+            }
+        }
+        else{
+            System.out.println("Veuillez choisir une zone.");
+            this.deplacer();
+        }
+
     }
 
     public void setCaracteristique(String reponse, int p) {
         if(this.joueur.getPoints() < p){
-            System.out.println("PAS ASSEZ DE CREDITS");
+            Message.notEnoughCredit();
         }
         else{
             boolean done = false;
@@ -177,7 +220,7 @@ public class Etudiant {
                 break;
 
                 default:
-                System.out.println("Input non correct");
+                Message.IncorrectInput();
                 break;
             }
             if(done){

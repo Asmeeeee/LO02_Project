@@ -24,6 +24,10 @@ public class Zone{
         return this.etudiantList;
     }
 
+    public String getNomZone(){
+        return this.nomZone;
+    }
+
     public void retirerEtudiant(Etudiant e){
         this.etudiantList.remove(e);
     }

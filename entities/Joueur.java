@@ -14,11 +14,12 @@ public class Joueur {
     private List<Etudiant> monEquipe;
 
 
-    public Joueur(){
+    public Joueur(Partie p){
         this.mesZones = new ArrayList<>();
         this.monEquipe = new ArrayList<>();
         this.points = 400;
         this.id = 1;
+        this.maPartie = p;
     }
 
     public int getNombreReserviste(){
@@ -43,6 +44,10 @@ public class Joueur {
 
     public void setPret(){
         this.estPret = true;
+    }
+
+    public Partie getPartie(){
+        return this.maPartie;
     }
 
     public int getPoints(){

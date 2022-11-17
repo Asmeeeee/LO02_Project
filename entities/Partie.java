@@ -9,6 +9,10 @@ public class Partie {
     private List<Joueur> lesJoueurs;
     private List<Zone> lesZones;
 
+    public List<Zone> getLesZones(){
+        return this.lesZones;
+    }
+
     public Partie(){
         this.lesJoueurs = new ArrayList<>();
         this.lesZones = new ArrayList<>();
@@ -16,8 +20,8 @@ public class Partie {
 
     public void setJeux(){
         System.out.println("Création des joueurs");
-        Joueur j1 = new Joueur();
-        Joueur j2 = new Joueur();
+        Joueur j1 = new Joueur(this);
+        Joueur j2 = new Joueur(this);
         this.lesJoueurs = Arrays.asList(j1, j2);
         System.out.println("Création des zones");
         Zone z1 = new Zone("La bibliothèque");
@@ -39,7 +43,7 @@ public class Partie {
                     e.menuCaracteristique();
                 }
                 else{
-                    System.out.println("Vous n'avez plus de crédit");
+                    Message.noMoreCredit();
                 }
             }
         }
