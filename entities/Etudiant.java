@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 import strategies.AbstractStrategy;
 
 public class Etudiant {
@@ -111,36 +113,59 @@ public class Etudiant {
         this.resistance+ " ,(4)constitution: "+this.constitution+ " ,(5)initiative: "+ this.initiative+ " ,(6)réserviste: "+this.reserviste);
     }
 
-    public void setCaracteristique(String reponse) {
-        int p = 10;
-        if(this.joueur.getPoints() <= p){
+    public void menuCaracteristique(){
+        int p;
+        String c = "test";
+        Scanner myObj = new Scanner(System.in);  
+        System.out.println("----------------------------" + this.getJoueur().getPoints());
+        this.afficherTerminal();
+        while(!c.isBlank()){
+            System.out.print("Choississez une caractéristique\n");
+            c = myObj.nextLine();// Read user inputy
+            if(!c.isBlank()){
+                if(!c.equals("6")){
+                    System.out.print("Combien de points souhaitez-vous dépenser?\n");
+                    p = Integer.parseInt(myObj.nextLine());
+                    this.setCaracteristique(c, p);
+                }
+                else{
+                    this.setCaracteristique(c,0);
+                }
+                this.afficherTerminal();
+            }
+        }
+        System.out.println("----------------------------");
+    }
+
+    public void setCaracteristique(String reponse, int p) {
+        if(this.joueur.getPoints() < p){
             System.out.println("PAS ASSEZ DE CREDITS");
         }
         else{
             boolean done = false;
             switch(reponse){
                 case "1": 
-                this.force += 10;
+                this.force += p;
                 done = true;
                 break;
     
                 case "2":
-                this.dexterite += 10;
+                this.dexterite += p;
                 done = true;
                 break;
     
                 case "3":
-                this.resistance += 10;
+                this.resistance += p;
                 done = true;
                 break;
     
                 case "4":
-                this.constitution += 10;
+                this.constitution += p;
                 done = true;
                 break;
     
                 case "5":
-                this.initiative += 10;
+                this.initiative += p;
                 done = true;
                 break;
 
@@ -158,7 +183,6 @@ public class Etudiant {
             if(done){
                 this.joueur.setPoints(this.joueur.getPoints() - p);
             }
-            System.out.println("Fin de la caractérisation");
         }
     }
     

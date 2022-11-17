@@ -1,7 +1,6 @@
-import java.time.Year;
+
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 public class Executable{
     public static void main(String[]args){
