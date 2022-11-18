@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 public class Zone{
@@ -34,5 +36,10 @@ public class Zone{
 
     public void ajouterEtudiant(Etudiant e){
         this.etudiantList.add(e);
+    }
+
+    public Etudiant getEtudiantMoinsDeVie(){
+        this.etudiantList.sort(new ComparatorEtc());
+        return this.etudiantList.stream().filter(etudiant -> etudiant.getCreditETC() == )
     }
 }

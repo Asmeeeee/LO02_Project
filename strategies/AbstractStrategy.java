@@ -1,6 +1,15 @@
-package strategies;
+public abstract class AbstractStrategy<Etudiant>{
 
-public abstract class AbstractStrategy {
+    private Etudiant etudiant;
+
+    public AbstractStrategy(Etudiant e){
+        this.etudiant = e;
+    }
+
+    public Etudiant getEtudiant(){
+        return this.etudiant;
+    }
+
     public abstract void jouer();
 
     public void attaquer(){
@@ -8,6 +17,6 @@ public abstract class AbstractStrategy {
     }
 
     public void soigner(){
-        //TODO
+        //joueur a soigner
     }
 }
