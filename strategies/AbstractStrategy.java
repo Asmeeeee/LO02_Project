@@ -30,6 +30,10 @@ public abstract class AbstractStrategy{
             double degatInfglige =(y * (1 + coefDegat) * 10);
             etuAttaque.setCreditETC(etuAttaque.getCreditETC() - (int) degatInfglige);
         }
+        //Si l'adversaire n'a plus de creditEtc, alors il "meurt"
+        if(etuAttaque.getCreditETC() <= 0){
+            etuAttaque.mourir();
+        }
     }
 
     public void soigner(){

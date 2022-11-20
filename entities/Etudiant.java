@@ -14,6 +14,7 @@ public class Etudiant {
     private int constitution = 0;
     private int initiative = 0;
     private boolean reserviste = false;
+    private boolean estVivant = true;
     private String classe = "base";
 
     public Etudiant(Joueur j){
@@ -225,6 +226,11 @@ public class Etudiant {
                 this.joueur.setPoints(this.joueur.getPoints() - p);
             }
         }
+    }
+
+    public void mourir() {
+        this.estVivant = false;
+        this.zone.getEtudiants().remove(this);
     }
     
 }
