@@ -23,4 +23,8 @@ public abstract class Message{
     public static String tag(){
         return "################";
     }
+
+    public static String liner2() {
+        return "----------------------------";
+    }
 }

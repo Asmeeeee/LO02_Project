@@ -55,34 +55,40 @@ public class Partie {
         System.out.println(Message.tag() +" FIN DE LA CONFIGURATION " +Message.tag());
     }
 
+    //TODO 
     public void demarrerMelee() {
+        System.out.println(Message.tag() + " DEBUT DE LA MELEE "+ Message.tag());
         boolean enCours = true;
         int iZone = 0;
         int iEtudiant = 0;
+        int round = 1;
         while(enCours){
+            System.out.println(Message.liner2() + " ROUND "+ round+ Message.liner2());
             if(iEtudiant < this.getLesZones().get(iZone).getEtudiants().size()-1){
                 this.getLesZones().get(iZone).jouerLaZone(iEtudiant);
                 if( this.getLesZones().get(iZone).getJoueur() != null ){
                     enCours = false;
                 }
             }
-            if(iZone % 5 == 0){
+            if(iZone % 4 == 0){
                 iZone = 0;
                 iEtudiant ++;
             }
             else{
                 iZone ++;
             }
+            round++;
         }
+        System.out.println(Message.tag() +" FIN DE LA MELEE "+Message.tag());
     }
 
     public void demarrerTreve() {
-        System.out.println(Message.tag() + " DEBUT DE LA MELEE "+ Message.tag());
+        System.out.println(Message.tag() + " DEBUT DE LA TREVE "+ Message.tag());
         Scanner myObj = new Scanner(System.in);   
         for(Joueur j : lesJoueurs){
             //TODO
         }
-        System.out.println(Message.tag() +" FIN DE LA CONFIGURATION "+Message.tag());
+        System.out.println(Message.tag() +" FIN DE LA TREVE "+Message.tag());
     }
 
 }
