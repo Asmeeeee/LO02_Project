@@ -62,6 +62,9 @@ public class Partie {
         while(enCours){
             if(iEtudiant < this.getLesZones().get(iZone).getEtudiants().size()){
                 this.getLesZones().get(iZone).jouerLaZone(iEtudiant);
+                if( this.getLesZones().get(iZone).getJoueur() != null ){
+                    enCours = false;
+                }
             }
             if(iZone % 5 == 0){
                 iZone = 0;

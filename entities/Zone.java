@@ -7,11 +7,15 @@ public class Zone implements Comparable{
 
     private String nomZone;
     private List<Etudiant> etudiantList;
-    private Joueur joueur;
+    private Joueur joueur = null;
 
     public Zone(String nom){
         this.nomZone = nom;
         this.etudiantList = new ArrayList();
+    }
+
+    public Joueur getJoueur(){
+        return this.joueur;
     }
 
     public int getNombreETC(){
@@ -49,7 +53,28 @@ public class Zone implements Comparable{
         //trier la liste d etudiant par initiative
         ComparatorInitiative comparatorInitiative = new ComparatorInitiative();
         this.etudiantList.sort(comparatorInitiative);
-        this.etudiantList.get(i).jouer();
+
+        //L'étudiant à l'index i joue
+        Etudiant etu = this.etudiantList.get(i);
+        etu.jouer();
+
+        //Le joueur qui possede l'étudiant qui joue
+        Joueur j = etu.getJoueur();
+        if(this.verifierJoueurEnnemie(j)){
+            this.joueur = j;
+        }
+    }
+
+    public boolean verifierJoueurEnnemie(Joueur j){
+        boolean res = true;
+        int i = 0;
+        while(res){
+            if(this.getEtudiants().get(i).getJoueur() != j){
+                res = false;
+            }
+            i++;
+        }
+        return res;
     }
 
     @Override
