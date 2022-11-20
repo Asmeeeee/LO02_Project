@@ -60,7 +60,7 @@ public class Partie {
         int iZone = 0;
         int iEtudiant = 0;
         while(enCours){
-            if(iEtudiant < this.getLesZones().get(iZone).getEtudiants().size()){
+            if(iEtudiant < this.getLesZones().get(iZone).getEtudiants().size()-1){
                 this.getLesZones().get(iZone).jouerLaZone(iEtudiant);
                 if( this.getLesZones().get(iZone).getJoueur() != null ){
                     enCours = false;
