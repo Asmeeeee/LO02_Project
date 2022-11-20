@@ -1,6 +1,9 @@
-package strategies;
-
 public class StratAleatoire extends AbstractStrategy{
+
+    public StratAleatoire(Etudiant e) {
+        super(e);
+        //TODO Auto-generated constructor stub
+    }
 
     @Override
     public void jouer() {

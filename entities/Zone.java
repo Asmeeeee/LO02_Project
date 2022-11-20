@@ -39,7 +39,9 @@ public class Zone{
     }
 
     public Etudiant getEtudiantMoinsDeVie(){
-        this.etudiantList.sort(new ComparatorEtc());
-        return this.etudiantList.stream().filter(etudiant -> etudiant.getCreditETC() == )
+        ComparatorEtc comparatorEtc = new ComparatorEtc();
+        List<Etudiant> l1 = this.etudiantList;
+        l1.sort(comparatorEtc);
+        return l1.get(0);
     }
 }

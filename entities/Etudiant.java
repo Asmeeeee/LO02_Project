@@ -1,8 +1,6 @@
 import java.nio.IntBuffer;
 import java.util.Scanner;
 
-import strategies.AbstractStrategy;
-
 public class Etudiant {
     
     private int id;
