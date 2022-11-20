@@ -19,6 +19,8 @@ public class Executable{
             Partie partie = new Partie();
             partie.setJeux();
             partie.configurationEtudiant();
+            partie.demarrerMelee();
+            partie.demarrerTreve();
         }
 
     }

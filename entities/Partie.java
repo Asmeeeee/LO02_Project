@@ -1,5 +1,8 @@
+import java.io.IOError;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,19 +37,49 @@ public class Partie {
 
     public void configurationEtudiant(){
         Scanner myObj = new Scanner(System.in);   
-        for(int i = 0; i <= 1; i++){
-            int y = i+1;
-            System.out.println("################ JOUEUR " + y + " ##############   Vos crédit ETC "+ this.lesJoueurs.get(i).getPoints());
-            EtudiantFactory.createEtudiant(this.lesJoueurs.get(i)); // Création des etudiants(15etu, 2 elite, 1 maitre)
-            for(Etudiant e : this.lesJoueurs.get(i).getMonEquipe()){
-                if(this.lesJoueurs.get(i).getPoints() > 0){
+        int i = 1;
+        //Pour chaque joueur
+        for(Joueur j : lesJoueurs){
+            System.out.println(Message.tag() +" JOUEUR " + i + " "+ Message.tag()+ "  Vos crédit ETC: "+ j.getPoints());
+            EtudiantFactory.createEtudiant(j); // Création des etudiants(15etu, 2 elite, 1 maitre)
+            for(Etudiant e : j.getMonEquipe()){
+                if(j.getPoints() > 0){
                     e.menuCaracteristique();
                 }
                 else{
                     Message.noMoreCredit();
                 }
             }
+            i++;
         }
-        System.out.println("################ FIN DE LA CONFIGURATION #################");
+        System.out.println(Message.tag() +" FIN DE LA CONFIGURATION " +Message.tag());
     }
+
+    public void demarrerMelee() {
+        boolean enCours = true;
+        int iZone = 0;
+        int iEtudiant = 0;
+        while(enCours){
+            if(iEtudiant < this.getLesZones().get(iZone).getEtudiants().size()){
+                this.getLesZones().get(iZone).jouerLaZone(iEtudiant);
+            }
+            if(iZone % 5 == 0){
+                iZone = 0;
+                iEtudiant ++;
+            }
+            else{
+                iZone ++;
+            }
+        }
+    }
+
+    public void demarrerTreve() {
+        System.out.println(Message.tag() + " DEBUT DE LA MELEE "+ Message.tag());
+        Scanner myObj = new Scanner(System.in);   
+        for(Joueur j : lesJoueurs){
+            //TODO
+        }
+        System.out.println(Message.tag() +" FIN DE LA CONFIGURATION "+Message.tag());
+    }
+
 }

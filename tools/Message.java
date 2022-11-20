@@ -19,4 +19,8 @@ public abstract class Message{
     public static void liner(){
         System.out.println("----------------------------");
     }
+
+    public static String tag(){
+        return "################";
+    }
 }
