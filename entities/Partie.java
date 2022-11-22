@@ -42,9 +42,12 @@ public class Partie {
         for(Joueur j : lesJoueurs){
             System.out.println(Message.tag() +" JOUEUR " + i + " "+ Message.tag()+ "  Vos crédit ETC: "+ j.getPoints());
             EtudiantFactory.createEtudiant(j); // Création des etudiants(15etu, 2 elite, 1 maitre)
+            int y = 1;
             for(Etudiant e : j.getMonEquipe()){
                 if(j.getPoints() > 0){
+                    System.out.print(y+"/"+j.getMonEquipe().size()+" etudiant a configurer\n");
                     e.menuCaracteristique();
+                    y++;
                 }
                 else{
                     Message.noMoreCredit();
