@@ -187,27 +187,57 @@ public class Etudiant {
             boolean done = false;
             switch(reponse){
                 case "1": 
-                this.force += p;
+                if(this.force + p > 10){
+                    p = 10 - this.force;
+                    this.force = 10;
+                }
+                else{
+                    this.force += p;
+                }
                 done = true;
                 break;
     
                 case "2":
-                this.dexterite += p;
+                if(this.dexterite + p > 10){
+                    p = 10 - this.dexterite;
+                    this.dexterite = 10;
+                }
+                else{
+                    this.dexterite += p;
+                }
                 done = true;
                 break;
     
                 case "3":
-                this.resistance += p;
+                if(this.resistance + p > 10){
+                    p = 10 - this.resistance;
+                    this.resistance = 10;
+                }
+                else{
+                    this.resistance += p;
+                }
                 done = true;
                 break;
     
                 case "4":
-                this.constitution += p;
+                if(this.constitution + p > 30){
+                    p = 30 - this.constitution;
+                    this.constitution = 30;
+                }
+                else{
+                    this.constitution += p;
+                }
                 done = true;
                 break;
     
                 case "5":
-                this.initiative += p;
+                if(this.initiative + p > 10){
+                    p = 10 - this.initiative;
+                    this.initiative = 10;
+                }
+                else{
+                    this.initiative += p;
+                }
                 done = true;
                 break;
 
