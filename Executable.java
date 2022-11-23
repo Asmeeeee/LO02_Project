@@ -27,14 +27,12 @@ public class Executable{
                         Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
                         e.setZone(z);
                         z.getEtudiants().add(e);
+                        if(i%2!=0){
+                            e.setReserviste(true);
+                        }
                     }
                 }
             }
-            for(Joueur j : partie.getLesJoueurs()){
-                System.out.println(j.getMonEquipe().size());
-            }
-            System.out.println("on y va?");
-            myObj.nextLine();
             //FIN TEST
             partie.demarrerMelee();
             partie.demarrerTreve();

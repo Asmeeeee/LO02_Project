@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class Joueur {
@@ -86,5 +87,46 @@ public class Joueur {
 
     public List<Etudiant> getMonEquipe(){
         return this.monEquipe;
+    }
+
+    public void afficherReservistes(List<Etudiant> reservistes){
+        String chaine = "";
+        int i = 1;
+        for(Etudiant e : reservistes){
+            chaine += i + " "+e.toString()+" ";
+            i++;
+        }
+        System.out.println(chaine);
+    }
+
+    public void menuReserviste() {
+        Scanner myObj = new Scanner(System.in);
+        boolean fini = false;
+        List<Etudiant> reservistes = new ArrayList<>(this.getMonEquipe().stream().filter(t -> t.getReserviste()).toList());
+        while(!fini || !reservistes.isEmpty()){
+            this.afficherReservistes(reservistes);
+            System.out.println("Veuillez choisir un réserviste");
+            String reponse = myObj.nextLine();
+            if(reponse.isBlank()){
+                System.out.println("Avez-vous fini d'avoir choisi les réserviste y/n");
+                String reponse2 = myObj.nextLine();
+                System.out.println(reponse2);
+                if(reponse2.equals("y")){
+                    fini = true;
+                }
+                System.out.println(fini);
+            }
+            else{
+                try {
+                    Etudiant etudiant = reservistes.get(Integer.parseInt(reponse)-1);
+                    System.out.print(etudiant.toString());
+                    reservistes.remove(etudiant);
+                    etudiant.deplacer();
+                } catch (Exception e) {
+                    System.out.println(e);
+                    Message.IncorrectInput();
+                }
+            }
+        }
     }
 }

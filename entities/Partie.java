@@ -60,7 +60,6 @@ public class Partie {
         System.out.println(Message.tag() +" FIN DE LA CONFIGURATION " +Message.tag());
     }
 
-    //TODO 
     public void demarrerMelee() {
         System.out.println(Message.tag() + " DEBUT DE LA MELEE "+ Message.tag());
         boolean enCours = true;
@@ -94,6 +93,8 @@ public class Partie {
         System.out.println(Message.tag() + " DEBUT DE LA TREVE "+ Message.tag());
         Scanner myObj = new Scanner(System.in);   
         for(Joueur j : lesJoueurs){
+            System.out.println(Message.tag() +" JOUEUR " + j.getId() + " "+ Message.tag());
+            j.menuReserviste();
             //TODO
         }
         System.out.println(Message.tag() +" FIN DE LA TREVE "+Message.tag());
