@@ -33,7 +33,7 @@ public abstract class AbstractStrategy{
         //Si l'adversaire n'a plus de creditEtc, alors il "meurt"
         if(etuAttaque.getCreditETC() <= 0){
             etuAttaque.mourir();
-            System.out.println("Un etudiant est mort");
+            System.out.println("LE JOUEUR "+etuAttaque.getJoueur().getId()+" a perdu un étudiant "+etuAttaque.getClasse());
         }
     }
 

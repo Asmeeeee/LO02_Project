@@ -16,6 +16,10 @@ public class Partie {
         return this.lesZones;
     }
 
+    public List<Joueur> getLesJoueurs(){
+        return this.lesJoueurs;
+    }
+
     public Partie(){
         this.lesJoueurs = new ArrayList<>();
         this.lesZones = new ArrayList<>();
@@ -23,8 +27,8 @@ public class Partie {
 
     public void setJeux(){
         System.out.println("Création des joueurs");
-        Joueur j1 = new Joueur(this);
-        Joueur j2 = new Joueur(this);
+        Joueur j1 = new Joueur(this, 1);
+        Joueur j2 = new Joueur(this, 2);
         this.lesJoueurs = Arrays.asList(j1, j2);
         System.out.println("Création des zones");
         Zone z1 = new Zone("La bibliothèque");
@@ -37,10 +41,9 @@ public class Partie {
 
     public void configurationEtudiant(){
         Scanner myObj = new Scanner(System.in);   
-        int i = 1;
         //Pour chaque joueur
         for(Joueur j : lesJoueurs){
-            System.out.println(Message.tag() +" JOUEUR " + i + " "+ Message.tag()+ "  Vos crédit ETC: "+ j.getPoints());
+            System.out.println(Message.tag() +" JOUEUR " + j.getId() + " "+ Message.tag()+ "  Vos crédit ETC: "+ j.getPoints());
             EtudiantFactory.createEtudiant(j); // Création des etudiants(15etu, 2 elite, 1 maitre)
             int y = 1;
             for(Etudiant e : j.getMonEquipe()){
@@ -53,7 +56,6 @@ public class Partie {
                     Message.noMoreCredit();
                 }
             }
-            i++;
         }
         System.out.println(Message.tag() +" FIN DE LA CONFIGURATION " +Message.tag());
     }
@@ -65,11 +67,13 @@ public class Partie {
         int iZone = 0;
         int iEtudiant = 0;
         int round = 1;
+        int indexZoneControle = 0;
         while(enCours){
             System.out.println(Message.liner2() + " ROUND "+ round+ Message.liner2());
             if(iEtudiant < this.getLesZones().get(iZone).getEtudiants().size()-1){
                 this.getLesZones().get(iZone).jouerLaZone(iEtudiant);
                 if( this.getLesZones().get(iZone).getJoueur() != null ){
+                    indexZoneControle = iZone; 
                     enCours = false;
                 }
             }
@@ -82,6 +86,7 @@ public class Partie {
             }
             round++;
         }
+        System.out.println("La Zone "+indexZoneControle +" a été controlé par le Joueur " + this.getLesZones().get(indexZoneControle).getJoueur().getId());
         System.out.println(Message.tag() +" FIN DE LA MELEE "+Message.tag());
     }
 

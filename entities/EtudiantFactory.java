@@ -15,6 +15,16 @@ public abstract class EtudiantFactory {
         return e;
     }
 
+    public static Etudiant getEtudiantMaxSpec(Joueur j){
+        Etudiant e = new Etudiant(j);
+        e.setForce(10);
+        e.setDexterite(10);
+        e.setResistance(10);
+        e.setConstitution(30);
+        e.setInitiative(10);
+        return e;
+    }
+
     public static Etudiant getEtudiantElite(Joueur j){
         Etudiant e = new Etudiant(j);
         e.setForce(1);

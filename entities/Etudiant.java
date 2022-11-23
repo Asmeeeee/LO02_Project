@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Etudiant {
     
     private int id;
-    private AbstractStrategy maStrategie;
+    private AbstractStrategy maStrategie = new StratOffensive(this);
     private Zone zone;
     private Joueur joueur;
     private int creditETC = 30;
@@ -160,7 +160,11 @@ public class Etudiant {
             try {
                 int i = Integer.parseInt(reponse);
                 if(i>0 && i<6){
+                    if(this.zone!=null){
+                        this.zone.getEtudiants().remove(this);
+                    }
                     this.zone = this.joueur.getPartie().getLesZones().get(i-1);
+                    this.zone.getEtudiants().add(this);
                     System.out.println("L'étudiant est dorénavent à la zone "+ this.zone.getNomZone());
                 }
                 else{

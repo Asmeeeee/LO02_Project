@@ -18,8 +18,24 @@ public class Executable{
             System.out.println("Creation de la partie");
             Partie partie = new Partie();
             partie.setJeux();
+            //TEST
             //partie.configurationEtudiant();
             //TODO Creer 4 etudaint avec attribut max
+            for(Joueur j : partie.getLesJoueurs()){
+                for(Zone z : partie.getLesZones()){
+                    for(int i = 0; i < 3; i++){
+                        Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
+                        e.setZone(z);
+                        z.getEtudiants().add(e);
+                    }
+                }
+            }
+            for(Joueur j : partie.getLesJoueurs()){
+                System.out.println(j.getMonEquipe().size());
+            }
+            System.out.println("on y va?");
+            myObj.nextLine();
+            //FIN TEST
             partie.demarrerMelee();
             partie.demarrerTreve();
         }
