@@ -10,7 +10,7 @@ public class Partie {
 
     private int round;
     private List<Joueur> lesJoueurs;
-    private List<Zone> lesZones;
+    static List<Zone> lesZones;
 
     public List<Zone> getLesZones(){
         return this.lesZones;

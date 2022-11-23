@@ -121,7 +121,8 @@ public class Joueur {
                     Etudiant etudiant = reservistes.get(Integer.parseInt(reponse)-1);
                     System.out.print(etudiant.toString());
                     reservistes.remove(etudiant);
-                    etudiant.deplacer();
+                    List<Zone> zoneNonControle = new ArrayList<>(Partie.lesZones.stream().filter(z->z.getJoueur()==null).toList());
+                    etudiant.deplacer(zoneNonControle);
                 } catch (Exception e) {
                     System.out.println(e);
                     Message.IncorrectInput();

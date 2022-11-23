@@ -1,3 +1,5 @@
+import java.util.List;
+
 public abstract class Message{
     
     public static void IncorrectInput(){
@@ -12,8 +14,14 @@ public abstract class Message{
         System.out.println("Vous n'avez plus de crédit");
     }
 
-    public static void mapPresentation(){
-        System.out.println("\n(1)La bibliothèque (2)Le Bureau des Etudiants (3)Le Quartier Administratif (4)Les Halles industrielles (5)La Halle Sportive");
+    public static void mapPresentation(List<Zone> lesZones){
+        String chaine = "";
+        int i = 1;
+        for(Zone z : lesZones){
+            chaine += "("+i+")"+z.getNomZone()+" " ;
+            i++;
+        }
+        System.out.println("\n" + chaine);
     }
 
     public static void liner(){

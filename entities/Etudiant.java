@@ -1,4 +1,5 @@
 import java.nio.IntBuffer;
+import java.util.List;
 import java.util.Scanner;
 
 public class Etudiant {
@@ -147,40 +148,39 @@ public class Etudiant {
                 this.afficherTerminal();
             }
         }
-        this.deplacer();
+        this.deplacer(Partie.lesZones);
         Message.liner();
     }
 
-    public void deplacer(){
+    public void deplacer(List<Zone> lesZones){
         Scanner myObj = new Scanner(System.in);
-        Message.mapPresentation();
+        Message.mapPresentation(lesZones);
         System.out.println("Choississez une zone");
         String reponse = myObj.nextLine();
         if(!reponse.isBlank()){
             try {
                 int i = Integer.parseInt(reponse);
-                if(i>0 && i<6){
+                if(i>0 && i<lesZones.size()){
                     if(this.zone!=null){
                         this.zone.getEtudiants().remove(this);
                     }
-                    this.zone = this.joueur.getPartie().getLesZones().get(i-1);
+                    this.zone = lesZones.get(i-1);
                     this.zone.getEtudiants().add(this);
                     System.out.println("L'étudiant est dorénavent à la zone "+ this.zone.getNomZone());
                 }
                 else{
                     Message.IncorrectInput();
-                    this.deplacer();
+                    this.deplacer(lesZones);
                 }
             } catch (Exception e) {
                 Message.IncorrectInput();
-                this.deplacer();
+                this.deplacer(lesZones);
             }
         }
         else{
             System.out.println("Veuillez choisir une zone.");
-            this.deplacer();
+            this.deplacer(lesZones);
         }
-
     }
 
     public void setCaracteristique(String reponse, int p) {
