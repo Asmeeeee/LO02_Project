@@ -18,7 +18,8 @@ public class Executable{
             System.out.println("Creation de la partie");
             Partie partie = new Partie();
             partie.setJeux();
-            partie.configurationEtudiant();
+            //partie.configurationEtudiant();
+            //TODO Creer 4 etudaint avec attribut max
             partie.demarrerMelee();
             partie.demarrerTreve();
         }
