@@ -6,6 +6,7 @@ public abstract class AbstractStrategy{
 
     public AbstractStrategy(Etudiant e){
         this.etudiant = e;
+        e.setStrategie(this);
     }
 
     public Etudiant getEtudiant(){

@@ -23,6 +23,14 @@ public class Etudiant {
         j.getMonEquipe().add(this);
     }
 
+    public AbstractStrategy getStrategie(){
+        return this.maStrategie;
+    }
+
+    public void setStrategie(AbstractStrategy aStrategy){
+        this.maStrategie = aStrategy;
+    }
+
     public Joueur getJoueur(){
         return this.joueur;
     }
@@ -166,7 +174,7 @@ public class Etudiant {
         if(!reponse.isBlank()){
             try {
                 int i = Integer.parseInt(reponse);
-                if(i>0 && i<lesZones.size()){
+                if(i>0 && i<=lesZones.size()){
                     if(this.zone!=null){
                         this.zone.getEtudiants().remove(this);
                     }

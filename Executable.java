@@ -34,8 +34,12 @@ public class Executable{
                 }
             }
             //FIN TEST
-            partie.demarrerMelee();
-            partie.demarrerTreve();
+            while(partie.getLesJoueurs().get(0).getMesZones().size()<3 && partie.getLesJoueurs().get(1).getMesZones().size()<3){
+                partie.demarrerMelee();
+                partie.demarrerTreve();
+            }
+            System.out.println("La partie est fini");
+            System.out.println("Le vainqueur est ");
         }
 
     }

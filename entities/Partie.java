@@ -95,7 +95,8 @@ public class Partie {
         for(Joueur j : lesJoueurs){
             System.out.println(Message.tag() +" JOUEUR " + j.getId() + " "+ Message.tag());
             j.menuReserviste();
-            //TODO
+            //TODO Redployer soldat d'une zone controlé
+            j.redeployerTroupeDUneZoneControlee();
         }
         System.out.println(Message.tag() +" FIN DE LA TREVE "+Message.tag());
     }

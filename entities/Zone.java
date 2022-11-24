@@ -62,6 +62,7 @@ public class Zone implements Comparable{
         Joueur j = etu.getJoueur();
         if(this.verifierJoueurEnnemie(j)){
             this.joueur = j;
+            this.joueur.getMesZones().add(this);
         }
     }
 
@@ -84,6 +85,7 @@ public class Zone implements Comparable{
         }
         return res;
     }
+
 
     @Override
     public int compareTo(Object o) {

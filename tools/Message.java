@@ -35,4 +35,7 @@ public abstract class Message{
     public static String liner2() {
         return "----------------------------";
     }
+
+    public static void strategies() {
+    }
 }

@@ -28,6 +28,10 @@ public class Joueur {
         return this.id;
     }
 
+    public List<Zone> getMesZones(){
+        return this.mesZones;
+    }
+
     public int getNombreReserviste(){
         return this.nombreReserviste;
     }
@@ -89,7 +93,7 @@ public class Joueur {
         return this.monEquipe;
     }
 
-    public void afficherReservistes(List<Etudiant> reservistes){
+    public void afficherEtudiants(List<Etudiant> reservistes){
         String chaine = "";
         int i = 1;
         for(Etudiant e : reservistes){
@@ -105,7 +109,7 @@ public class Joueur {
         int cpt = 0;
         List<Etudiant> reservistes = new ArrayList<>(this.getMonEquipe().stream().filter(t -> t.getReserviste()).toList());
         while(!fini && !reservistes.isEmpty()){
-            this.afficherReservistes(reservistes);
+            this.afficherEtudiants(reservistes);
             System.out.println("Veuillez choisir un réserviste");
             String reponse = myObj.nextLine();
             if(reponse.isBlank()){
@@ -134,5 +138,66 @@ public class Joueur {
                 }
             }
         }
+    }
+
+    public void redeployerTroupeDUneZoneControlee() {
+        Scanner myObj = new Scanner(System.in);
+        boolean fini = false;
+        for(Zone z : this.mesZones){
+            List<Etudiant> listEtu = z.getEtudiants();
+            while(!false && listEtu.size() > 1){
+                this.afficherEtudiants(listEtu);
+                System.out.println("Veuillez choisir un étudiant à redeployer (Vous devez laisser un étudiant afin de garantir le controle)");
+                String reponse = myObj.nextLine();
+                if(reponse.isBlank()){
+                    System.out.println("Avez-vous fini de redeployer vos troupe? y/n");
+                    String reponse2 = myObj.nextLine();
+                    if(reponse2 == "y"){
+                        fini = true;
+                    }
+                }
+                else{
+                    try {
+                        int i = Integer.parseInt(reponse);
+                        if(i > 0 && i <= listEtu.size()){
+                            Etudiant etu = listEtu.get(i-1);
+                            List<Zone> zonesRedeploiment = new ArrayList<>(Partie.lesZones.stream().filter(t -> t != etu.getZone()).toList());
+                            etu.deplacer(zonesRedeploiment);
+                            listEtu.remove(etu);
+                            this.menuChangerStrategie(etu);
+                        }
+                    } catch (Exception e) {
+                        Message.IncorrectInput();
+                    }
+                }
+            }
+        }
+    }
+
+    private void menuChangerStrategie(Etudiant etu) {
+        Scanner myObj = new Scanner(System.in);
+        Message.strategies();
+        System.out.println("Quelle stratégie souhaitez-vousd appliquer?");
+        String chaine = "";
+        switch (Integer.parseInt(myObj.nextLine())) {
+            case 1:
+                etu.setStrategie(new StratOffensive(etu));
+                chaine = "offensive";
+                break;
+            case 2:
+                etu.setStrategie(new StratDefensive(etu));
+                chaine = "défensive";
+                break;
+
+            case 3:
+                etu.setStrategie(new StratAleatoire(etu));
+                chaine = "aléatoire";
+                break;
+
+            default:
+                this.menuChangerStrategie(etu);
+                break;
+        }
+        System.out.println("L'étudiant a maintenant une stratégie " + chaine);
     }
 }
