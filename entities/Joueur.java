@@ -129,6 +129,7 @@ public class Joueur {
                     Etudiant etudiant = reservistes.get(Integer.parseInt(reponse)-1);
                     System.out.print(etudiant.toString());
                     reservistes.remove(etudiant);
+                    etudiant.setReserviste(false);
                     List<Zone> zoneNonControle = new ArrayList<>(Partie.lesZones.stream().filter(z->z.getJoueur()==null).toList());
                     etudiant.deplacer(zoneNonControle);
                     cpt++;
@@ -144,15 +145,16 @@ public class Joueur {
         Scanner myObj = new Scanner(System.in);
         boolean fini = false;
         for(Zone z : this.mesZones){
+            System.out.println("Pour la Zone " + z.getNomZone());
             List<Etudiant> listEtu = z.getEtudiants();
-            while(!false && listEtu.size() > 1){
+            while(!fini && listEtu.size() > 1){
                 this.afficherEtudiants(listEtu);
                 System.out.println("Veuillez choisir un étudiant à redeployer (Vous devez laisser un étudiant afin de garantir le controle)");
                 String reponse = myObj.nextLine();
                 if(reponse.isBlank()){
                     System.out.println("Avez-vous fini de redeployer vos troupe? y/n");
                     String reponse2 = myObj.nextLine();
-                    if(reponse2 == "y"){
+                    if(reponse2.equals("y")){
                         fini = true;
                     }
                 }
@@ -177,7 +179,7 @@ public class Joueur {
     private void menuChangerStrategie(Etudiant etu) {
         Scanner myObj = new Scanner(System.in);
         Message.strategies();
-        System.out.println("Quelle stratégie souhaitez-vousd appliquer?");
+        System.out.println("Quelle stratégie souhaitez-vous appliquer?");
         String chaine = "";
         switch (Integer.parseInt(myObj.nextLine())) {
             case 1:

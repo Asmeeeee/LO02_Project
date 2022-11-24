@@ -85,7 +85,8 @@ public class Partie {
             }
             round++;
         }
-        System.out.println("La Zone "+indexZoneControle +" a été controlé par le Joueur " + this.getLesZones().get(indexZoneControle).getJoueur().getId());
+        Zone zoneControlee = this.getLesZones().get(indexZoneControle);
+        System.out.println("La Zone \""+ zoneControlee.getNomZone() +"\" a été controlé par le Joueur " + zoneControlee.getJoueur().getId());
         System.out.println(Message.tag() +" FIN DE LA MELEE "+Message.tag());
     }
 
@@ -97,8 +98,17 @@ public class Partie {
             j.menuReserviste();
             //TODO Redployer soldat d'une zone controlé
             j.redeployerTroupeDUneZoneControlee();
+            this.afficherCreditETCParZone();
         }
         System.out.println(Message.tag() +" FIN DE LA TREVE "+Message.tag());
+    }
+
+    private void afficherCreditETCParZone() {
+        Scanner myObj = new Scanner(System.in);
+        for(Zone z : Partie.lesZones){
+            System.out.println(z.getNomZone()+": "+ z.getNombreETC()+" crédit ETC");
+        }
+        myObj.nextLine();
     }
 
 }

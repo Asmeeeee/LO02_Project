@@ -31,6 +31,10 @@ public class Etudiant {
         this.maStrategie = aStrategy;
     }
 
+    public boolean estVivant(){
+        return this.estVivant;
+    }
+
     public Joueur getJoueur(){
         return this.joueur;
     }

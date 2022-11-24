@@ -37,5 +37,6 @@ public abstract class Message{
     }
 
     public static void strategies() {
+        System.out.println("(1)Offensive (2)Défensive (3)Aléatoire");
     }
 }

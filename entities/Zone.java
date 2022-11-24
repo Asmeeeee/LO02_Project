@@ -21,7 +21,9 @@ public class Zone implements Comparable{
     public int getNombreETC(){
         int res = 0;
         for(Etudiant e : etudiantList){
-            res += e.getCreditETC();
+            if(e.estVivant()){
+                res += e.getCreditETC();
+            }
         }
         return res;
     }
