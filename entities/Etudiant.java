@@ -123,6 +123,12 @@ public class Etudiant {
         this.resistance+ " |(4)constitution: "+this.constitution+ " |(5)initiative: "+ this.initiative+ " |(6)réserviste: " + var + "|");
     }
 
+    public String afficherTerminal2() {
+        String var = this.reserviste?"oui":"non";
+        return "|classe: "+this.classe+" |force: "+this.force+" |dextérité: "+ this.dexterite+" |resistance " + 
+        this.resistance+ " |constitution: "+this.constitution+ " |initiative: "+ this.initiative+ " |réserviste: " + var + "|"+this.toString()+"|\n";
+    }
+
     public void menuCaracteristique(){
         int p;
         String c = "test";

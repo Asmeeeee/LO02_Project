@@ -93,7 +93,7 @@ public class Joueur {
         String chaine = "";
         int i = 1;
         for(Etudiant e : reservistes){
-            chaine += i + " "+e.toString()+" ";
+            chaine += "(" + i + ")"+e.afficherTerminal2();
             i++;
         }
         System.out.println(chaine);
@@ -102,19 +102,23 @@ public class Joueur {
     public void menuReserviste() {
         Scanner myObj = new Scanner(System.in);
         boolean fini = false;
+        int cpt = 0;
         List<Etudiant> reservistes = new ArrayList<>(this.getMonEquipe().stream().filter(t -> t.getReserviste()).toList());
-        while(!fini || !reservistes.isEmpty()){
+        while(!fini && !reservistes.isEmpty()){
             this.afficherReservistes(reservistes);
             System.out.println("Veuillez choisir un réserviste");
             String reponse = myObj.nextLine();
             if(reponse.isBlank()){
                 System.out.println("Avez-vous fini d'avoir choisi les réserviste y/n");
                 String reponse2 = myObj.nextLine();
-                System.out.println(reponse2);
                 if(reponse2.equals("y")){
-                    fini = true;
+                    if(cpt <= 0){
+                        System.out.println("veuillez déployer au moin un réserviste");
+                    }
+                    else{
+                        fini = true;
+                    }
                 }
-                System.out.println(fini);
             }
             else{
                 try {
@@ -123,6 +127,7 @@ public class Joueur {
                     reservistes.remove(etudiant);
                     List<Zone> zoneNonControle = new ArrayList<>(Partie.lesZones.stream().filter(z->z.getJoueur()==null).toList());
                     etudiant.deplacer(zoneNonControle);
+                    cpt++;
                 } catch (Exception e) {
                     System.out.println(e);
                     Message.IncorrectInput();
