@@ -44,11 +44,28 @@ public class Zone implements Comparable{
         this.etudiantList.add(e);
     }
 
-    public Etudiant getEtudiantMoinsDeVie(){
+    public Etudiant getEtudiantMoinsDeVieAllie(Etudiant soigneur){
         ComparatorEtc comparatorEtc = new ComparatorEtc();
         List<Etudiant> l1 = this.etudiantList;
+        l1.stream().filter(e -> e.getJoueur()==soigneur.getJoueur()).toList();
+        //On retire le soigneur de la liste pour empecher le cas ou le soigneur se soigne soi-même
+        l1.remove(soigneur);
         l1.sort(comparatorEtc);
-        return l1.get(0);
+        if(l1.size()>=1){
+            return l1.get(0);
+        }
+        return null;
+    }
+
+    public Etudiant getEtudiantMoinsDeVieEnnemie(Etudiant attaquant){
+        ComparatorEtc comparatorEtc = new ComparatorEtc();
+        List<Etudiant> l1 = this.etudiantList;
+        l1.stream().filter(e -> e.getJoueur()!=attaquant.getJoueur()).toList();
+        l1.sort(comparatorEtc);
+        if(l1.size()>=1){
+            return l1.get(0);
+        }
+        return null;
     }
 
     public void jouerLaZone(int i){
@@ -62,6 +79,7 @@ public class Zone implements Comparable{
 
         //Le joueur qui possede l'étudiant qui joue
         Joueur j = etu.getJoueur();
+        //Si il n'y a plus d'ennemie
         if(this.verifierJoueurEnnemie(j)){
             this.joueur = j;
             this.joueur.getMesZones().add(this);

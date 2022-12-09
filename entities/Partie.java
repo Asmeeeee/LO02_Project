@@ -69,14 +69,18 @@ public class Partie {
         int indexZoneControle = 0;
         while(enCours){
             System.out.println(Message.liner2() + " ROUND "+ round+ Message.liner2());
-            if(iEtudiant < this.getLesZones().get(iZone).getEtudiants().size()-1){
-                this.getLesZones().get(iZone).jouerLaZone(iEtudiant);
-                if( this.getLesZones().get(iZone).getJoueur() != null ){
-                    indexZoneControle = iZone; 
-                    enCours = false;
+            if(this.getLesZones().get(iZone).getJoueur() == null){ //si la zone n est pas controlée
+                if(iEtudiant <= this.getLesZones().get(iZone).getEtudiants().size()-1){ // l index de l etudiant est bien compris dans la taille de la liste de la zone que nous parcourons
+                    if(this.getLesZones().get(iZone).getEtudiants().get(iEtudiant).estVivant()){ // l etudiant est bien vivant
+                        this.getLesZones().get(iZone).jouerLaZone(iEtudiant);
+                        if( this.getLesZones().get(iZone).getJoueur() != null ){ // Si la zone est controlée 
+                            indexZoneControle = iZone; 
+                            enCours = false;
+                        }
+                    }
                 }
-            }
-            if(iZone % 4 == 0){
+            } 
+            if(iZone % 4 == 0 && iZone != 0){
                 iZone = 0;
                 iEtudiant ++;
             }
@@ -106,7 +110,10 @@ public class Partie {
     private void afficherCreditETCParZone() {
         Scanner myObj = new Scanner(System.in);
         for(Zone z : Partie.lesZones){
-            System.out.println(z.getNomZone()+": "+ z.getNombreETC()+" crédit ETC");
+            System.out.println(z.getNomZone()+": "+ z.getNombreETC()+" crédit ETC | ET Voici la taille " +z.getEtudiants().size());
+            for(Etudiant e : z.getEtudiants()){
+                System.out.println("        "+e.getCreditETC()+" "+ e.estVivant());
+            }
         }
         myObj.nextLine();
     }

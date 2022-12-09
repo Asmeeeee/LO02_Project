@@ -11,7 +11,7 @@ public class StratAleatoire extends AbstractStrategy{
             this.attaquer();
         }
         else{
-            this.soigner();
+            this.soigner(this.getEtudiant());
         } 
     }
     

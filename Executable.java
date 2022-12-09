@@ -36,6 +36,9 @@ public class Executable{
             //FIN TEST
             while(partie.getLesJoueurs().get(0).getMesZones().size()<3 && partie.getLesJoueurs().get(1).getMesZones().size()<3){
                 partie.demarrerMelee();
+                if(partie.getLesJoueurs().get(0).getMesZones().size()>=3 || partie.getLesJoueurs().get(1).getMesZones().size()>=3){
+                    break;
+                }
                 partie.demarrerTreve();
             }
             System.out.println("La partie est fini");

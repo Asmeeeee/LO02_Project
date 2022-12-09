@@ -7,7 +7,7 @@ public class StratDefensive extends AbstractStrategy{
 
     @Override
     public void jouer() {
-         this.soigner();
+         this.soigner(this.getEtudiant());
     }
     
 }

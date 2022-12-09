@@ -17,9 +17,9 @@ public abstract class AbstractStrategy{
 
     public void attaquer(){
         Random r = new Random();
-        //joueur a soigner
-        Etudiant etuAttaque = this.etudiant.getZone().getEtudiantMoinsDeVie();
-        //calcul si le soin est réussi
+        //joueur a attaquer
+        Etudiant etuAttaque = this.etudiant.getZone().getEtudiantMoinsDeVieEnnemie(this.etudiant);
+        //calcul si l'attaque est bien porté
         int low = 0;
         int high = 100;
         int result = r.nextInt(high-low) + low;
@@ -33,15 +33,15 @@ public abstract class AbstractStrategy{
         }
         //Si l'adversaire n'a plus de creditEtc, alors il "meurt"
         if(etuAttaque.getCreditETC() <= 0){
+            System.out.println("LE JOUEUR "+etuAttaque.getJoueur().getId()+" a perdu un étudiant "+etuAttaque.getClasse()+" a la zone "+etuAttaque.getZone().getNomZone());
             etuAttaque.mourir();
-            System.out.println("LE JOUEUR "+etuAttaque.getJoueur().getId()+" a perdu un étudiant "+etuAttaque.getClasse());
         }
     }
 
-    public void soigner(){
+    public void soigner(Etudiant soigneur){
         Random r = new Random();
         //joueur a soigner
-        Etudiant etuSoigne = this.etudiant.getZone().getEtudiantMoinsDeVie();
+        Etudiant etuSoigne = this.etudiant.getZone().getEtudiantMoinsDeVieAllie(soigneur);
         //calcul si le soin est réussi
         int low = 0;
         int high = 100;
