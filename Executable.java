@@ -1,11 +1,31 @@
 
+import java.time.Year;
 import java.util.Scanner;
 
 
 public class Executable{
     public static void main(String[]args){
+        Scanner myObj = new Scanner(System.in);
+        boolean replay = true;
+        while(replay){
+            lancerPartie();
+            System.out.println("Voulez-vous rejouer? y/n");
+            String reponse = myObj.nextLine();
+            if(!reponse.equals("y")){
+                replay = false;
+            }
+        }
+    }
 
+
+
+
+
+
+
+    public static void lancerPartie(){
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println(Message.tag()+" DEMARRAGE "+Message.tag());
         System.out.println("Bienvenue, C'est du Brutal!!!");
         System.out.println("Voulez-vous jouer? y/n");
 
@@ -41,9 +61,15 @@ public class Executable{
                 }
                 partie.demarrerTreve();
             }
+            String vainqueur;
+            if(partie.getLesJoueurs().get(0).getMesZones().size()>=3){
+                vainqueur = "1";
+            }
+            else{
+                vainqueur = "2";
+            }
             System.out.println("La partie est fini");
-            System.out.println("Le vainqueur est ");
+            System.out.println("Le vainqueur est " + vainqueur);
         }
-
     }
 }

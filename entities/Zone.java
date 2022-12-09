@@ -89,7 +89,7 @@ public class Zone implements Comparable{
     //TODO reparer la methode, la faire avec la boucle while. Il y a un probleme index out of range dans un cas exeptionnelle. source inconnue
     public boolean verifierJoueurEnnemie(Joueur j){
         boolean res = true;
-        int i = 0;
+        //int i = 0;
         //System.out.println(this.getEtudiants().size() - 1);
         // while(res || i <= this.getEtudiants().size() - 1 ){
         //     System.out.println(i);

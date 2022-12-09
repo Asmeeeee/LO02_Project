@@ -110,10 +110,7 @@ public class Partie {
     private void afficherCreditETCParZone() {
         Scanner myObj = new Scanner(System.in);
         for(Zone z : Partie.lesZones){
-            System.out.println(z.getNomZone()+": "+ z.getNombreETC()+" crédit ETC | ET Voici la taille " +z.getEtudiants().size());
-            for(Etudiant e : z.getEtudiants()){
-                System.out.println("        "+e.getCreditETC()+" "+ e.estVivant());
-            }
+            System.out.println(z.getNomZone()+": "+ z.getNombreETC()+" crédit ETC ");
         }
         myObj.nextLine();
     }

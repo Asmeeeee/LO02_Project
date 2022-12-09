@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 
@@ -10,7 +9,6 @@ public class Joueur {
     private String monProgramme;
     private int points;
     private int nombreReserviste;
-    private boolean estPret;
     private Partie maPartie;
     private List<Zone> mesZones;
     private List<Etudiant> monEquipe;
@@ -51,10 +49,6 @@ public class Joueur {
         }
     }
 
-
-    public void setPret(){
-        this.estPret = true;
-    }
 
     public Partie getPartie(){
         return this.maPartie;
@@ -181,25 +175,33 @@ public class Joueur {
         Message.strategies();
         System.out.println("Quelle stratégie souhaitez-vous appliquer?");
         String chaine = "";
-        switch (Integer.parseInt(myObj.nextLine())) {
-            case 1:
-                etu.setStrategie(new StratOffensive(etu));
-                chaine = "offensive";
-                break;
-            case 2:
-                etu.setStrategie(new StratDefensive(etu));
-                chaine = "défensive";
-                break;
+        String reponse = myObj.nextLine();
+        try {
+            int var = Integer.parseInt(reponse);
+            switch (var) {
+                case 1:
+                    etu.setStrategie(new StratOffensive(etu));
+                    chaine = "offensive";
+                    break;
+                case 2:
+                    etu.setStrategie(new StratDefensive(etu));
+                    chaine = "défensive";
+                    break;
 
-            case 3:
-                etu.setStrategie(new StratAleatoire(etu));
-                chaine = "aléatoire";
-                break;
+                case 3:
+                    etu.setStrategie(new StratAleatoire(etu));
+                    chaine = "aléatoire";
+                    break;
 
-            default:
-                this.menuChangerStrategie(etu);
-                break;
+                default:
+                    this.menuChangerStrategie(etu);
+                    break;
         }
         System.out.println("L'étudiant a maintenant une stratégie " + chaine);
+        } catch (Exception e) {
+            // TODO: handle exception
+            this.menuChangerStrategie(etu);
+        }
+        
     }
 }
