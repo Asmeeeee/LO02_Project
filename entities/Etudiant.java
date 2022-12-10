@@ -143,25 +143,42 @@ public class Etudiant {
 
     public void menuCaracteristique(){
         int p;
+        boolean pointDepense = false;
         String c = "test";
         Scanner myObj = new Scanner(System.in);  
-        Message.liner();
+        System.out.println( Message.liner2()+" "+this.getJoueur().getPoints()+" points à dépenser");
         this.afficherTerminal();
         while(!c.isBlank()){
-            System.out.print("Choississez une caractéristique   "+ this.getJoueur().getPoints()+" points à dépenser\n");
+            pointDepense = false;
+            System.out.print("Choississez une caractéristique:\n");
             c = myObj.nextLine();// Read user inputy
             if(!c.isBlank()){
-                if(!c.equals("6")){
-                    System.out.print("Combien de points souhaitez-vous dépenser?\n");
-                    try {
-                        p = Integer.parseInt(myObj.nextLine());
-                        this.setCaracteristique(c, p);
-                    } catch (Exception e) {
+                try {
+                    int c2 = Integer.parseInt(c);
+                    if(c2>0 && c2 < 6){
+                        if(c2 != 6){
+                            System.out.print("Combien de points souhaitez-vous dépenser?\n");
+                            try {
+                                p = Integer.parseInt(myObj.nextLine());
+                                this.setCaracteristique(c, p);
+                                pointDepense = true;
+                            } catch (Exception e) {
+                                Message.IncorrectInput();
+                            }
+                        }
+                        else{
+                            this.setCaracteristique(c,0);
+                        }
+                    }
+                    else{
                         Message.IncorrectInput();
                     }
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    Message.IncorrectInput();
                 }
-                else{
-                    this.setCaracteristique(c,0);
+                if(pointDepense){
+                    System.out.println("Votre solde est désormais de "+this.getJoueur().getPoints() + " points");
                 }
                 this.afficherTerminal();
             }

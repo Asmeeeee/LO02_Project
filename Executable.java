@@ -39,20 +39,20 @@ public class Executable{
             Partie partie = new Partie();
             partie.setJeux();
             //TEST
-            //partie.configurationEtudiant();
+            partie.configurationEtudiant();
             //TODO Creer 4 etudaint avec attribut max
-            for(Joueur j : partie.getLesJoueurs()){
-                for(Zone z : partie.getLesZones()){
-                    for(int i = 0; i < 3; i++){
-                        Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
-                        e.setZone(z);
-                        z.getEtudiants().add(e);
-                        if(i%2!=0){
-                            e.setReserviste(true);
-                        }
-                    }
-                }
-            }
+            // for(Joueur j : partie.getLesJoueurs()){
+            //     for(Zone z : partie.getLesZones()){
+            //         for(int i = 0; i < 3; i++){
+            //             Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
+            //             e.setZone(z);
+            //             z.getEtudiants().add(e);
+            //             if(i%2!=0){
+            //                 e.setReserviste(true);
+            //             }
+            //         }
+            //     }
+            // }
             //FIN TEST
             while(partie.getLesJoueurs().get(0).getMesZones().size()<3 && partie.getLesJoueurs().get(1).getMesZones().size()<3){
                 partie.demarrerMelee();
