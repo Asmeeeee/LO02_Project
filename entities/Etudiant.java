@@ -16,7 +16,7 @@ public class Etudiant {
     private int initiative = 0;
     private boolean reserviste = false;
     private boolean estVivant = true;
-    private String classe = "base";
+    private String classe = "basique";
 
     public Etudiant(Joueur j){
         this.joueur = j;

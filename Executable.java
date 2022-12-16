@@ -1,14 +1,14 @@
 
-import java.time.Year;
 import java.util.Scanner;
 
 
 public class Executable{
     public static void main(String[]args){
+        boolean skipConfiguration = false;
         Scanner myObj = new Scanner(System.in);
         boolean replay = true;
         while(replay){
-            lancerPartie();
+            lancerPartie(skipConfiguration);
             System.out.println("Voulez-vous rejouer? y/n");
             String reponse = myObj.nextLine();
             if(!reponse.equals("y")){
@@ -21,9 +21,7 @@ public class Executable{
 
 
 
-
-
-    public static void lancerPartie(){
+    public static void lancerPartie(boolean skipConfiguration){
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println(Message.tag()+" DEMARRAGE "+Message.tag());
         System.out.println("Bienvenue, C'est du Brutal!!!");
@@ -38,22 +36,25 @@ public class Executable{
             System.out.println("Creation de la partie");
             Partie partie = new Partie();
             partie.setJeux();
-            //TEST
-            partie.configurationEtudiant();
-            //TODO Creer 4 etudaint avec attribut max
-            // for(Joueur j : partie.getLesJoueurs()){
-            //     for(Zone z : partie.getLesZones()){
-            //         for(int i = 0; i < 3; i++){
-            //             Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
-            //             e.setZone(z);
-            //             z.getEtudiants().add(e);
-            //             if(i%2!=0){
-            //                 e.setReserviste(true);
-            //             }
-            //         }
-            //     }
-            // }
-            //FIN TEST
+ 
+            if(skipConfiguration){
+                for(Joueur j : partie.getLesJoueurs()){
+                    for(Zone z : partie.getLesZones()){
+                        for(int i = 0; i < 3; i++){
+                            Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
+                            e.setZone(z);
+                            z.getEtudiants().add(e);
+                            if(i%2!=0){
+                                e.setReserviste(true);
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                partie.configurationEtudiant();
+            }
+
             while(partie.getLesJoueurs().get(0).getMesZones().size()<3 && partie.getLesJoueurs().get(1).getMesZones().size()<3){
                 partie.demarrerMelee();
                 if(partie.getLesJoueurs().get(0).getMesZones().size()>=3 || partie.getLesJoueurs().get(1).getMesZones().size()>=3){
