@@ -1,3 +1,7 @@
+package model.strategies;
+
+import model.entities.Etudiant;
+
 public class StratOffensive extends AbstractStrategy{
 
     public StratOffensive(Etudiant e) {

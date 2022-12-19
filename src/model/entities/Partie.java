@@ -1,11 +1,11 @@
-import java.io.IOError;
+package model.entities;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+
+import model.tools.Message;
 
 public class Partie {
 

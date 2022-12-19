@@ -1,3 +1,5 @@
+package model.entities;
+
 public abstract class EtudiantFactory {
 
     public static void createEtudiant(Joueur j){

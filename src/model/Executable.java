@@ -1,10 +1,18 @@
+package model;
 
 import java.util.Scanner;
+
+import model.entities.Etudiant;
+import model.entities.EtudiantFactory;
+import model.entities.Joueur;
+import model.entities.Partie;
+import model.entities.Zone;
+import model.tools.Message;
 
 
 public class Executable{
     public static void main(String[]args){
-        boolean skipConfiguration = false;
+        boolean skipConfiguration = true;
         Scanner myObj = new Scanner(System.in);
         boolean replay = true;
         while(replay){

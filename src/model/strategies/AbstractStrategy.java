@@ -1,4 +1,8 @@
+package model.strategies;
+
 import java.util.Random;
+
+import model.entities.Etudiant;
 
 public abstract class AbstractStrategy{
 

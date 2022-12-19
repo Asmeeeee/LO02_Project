@@ -1,4 +1,8 @@
+package model.tools;
+
 import java.util.Comparator;
+
+import model.entities.Etudiant;
 
 public class ComparatorEtc implements Comparator<Etudiant>{
 

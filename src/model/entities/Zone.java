@@ -1,7 +1,10 @@
+package model.entities;
+
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
+
+import model.tools.ComparatorEtc;
+import model.tools.ComparatorInitiative;
 
 public class Zone implements Comparable{
 

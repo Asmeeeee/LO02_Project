@@ -1,4 +1,8 @@
+package model.tools;
+
 import java.util.List;
+
+import model.entities.Zone;
 
 public abstract class Message{
     

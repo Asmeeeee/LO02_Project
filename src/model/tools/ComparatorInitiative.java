@@ -1,4 +1,8 @@
+package model.tools;
+
 import java.util.Comparator;
+
+import model.entities.Etudiant;
 
 public class ComparatorInitiative implements Comparator<Etudiant>{
 

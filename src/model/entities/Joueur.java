@@ -1,6 +1,13 @@
+package model.entities;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import model.strategies.StratAleatoire;
+import model.strategies.StratDefensive;
+import model.strategies.StratOffensive;
+import model.tools.Message;
 
 
 public class Joueur {

@@ -1,6 +1,11 @@
-import java.nio.IntBuffer;
+package model.entities;
+
 import java.util.List;
 import java.util.Scanner;
+
+import model.strategies.AbstractStrategy;
+import model.strategies.StratOffensive;
+import model.tools.Message;
 
 public class Etudiant {
     
