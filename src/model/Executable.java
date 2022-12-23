@@ -26,7 +26,20 @@ public class Executable{
     }
 
 
-
+    public static void repartitionAutomatique(Partie partie) {
+        for(Joueur j : partie.getLesJoueurs()){
+            for(Zone z : partie.getLesZones()){
+                for(int i = 0; i < 3; i++){
+                    Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
+                    e.setZone(z);
+                    z.getEtudiants().add(e);
+                    if(i%2!=0){
+                        e.setReserviste(true);
+                    }
+                }
+            }
+        }
+    }
 
 
     public static void lancerPartie(boolean skipConfiguration){
@@ -46,18 +59,7 @@ public class Executable{
             partie.setJeux();
  
             if(skipConfiguration){
-                for(Joueur j : partie.getLesJoueurs()){
-                    for(Zone z : partie.getLesZones()){
-                        for(int i = 0; i < 3; i++){
-                            Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
-                            e.setZone(z);
-                            z.getEtudiants().add(e);
-                            if(i%2!=0){
-                                e.setReserviste(true);
-                            }
-                        }
-                    }
-                }
+            	repartitionAutomatique(partie);
             }
             else{
                 partie.configurationEtudiant();
@@ -81,4 +83,5 @@ public class Executable{
             System.out.println("Le vainqueur est " + vainqueur);
         }
     }
+    
 }

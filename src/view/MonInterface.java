@@ -1,34 +1,29 @@
 package view;
 
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.EventQueue;
+import java.util.Observable;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
-import controller.ControllerBtnDemarrer;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class MonInterface {
 
+	//-------------------------------Phase 1
 	private JFrame frame;
-	private JLabel lblNewLabel;
-	private JButton btnNon;
-	private JButton btnOui;
-	private GroupLayout groupLayout;
+	JPanel panelCont = new JPanel();
+	private Intro intro;
+	private ConfigurationEtudiant configurationEtudiant;
+	private Melee melee;
+	private Treve treve;
+	private Fin fin;
+
+
+	private CardLayout cl = new CardLayout();
+	
 
 	/**
 	 * Launch the application.
@@ -51,9 +46,29 @@ public class MonInterface {
 	 */
 	public MonInterface() {
 		initialize();
-		ControllerBtnDemarrer controllerBtnDemarrerOui = new ControllerBtnDemarrer(btnOui);
-		ControllerBtnDemarrer controllerBtnDemarrerNon = new ControllerBtnDemarrer(btnNon);
 	}
+	
+	public void changePanel(Container c, String num) {
+		cl.show(c, num);
+	}
+	
+	
+	public JPanel getPanelCont() {
+		return this.panelCont;
+	}
+	
+	public void fermerJeux() {
+		this.frame.dispose();
+	}
+	
+	
+	public void setComponent(Component component){
+	    frame.getContentPane().removeAll();
+	    frame.getContentPane().add(component, 0);
+	    frame.revalidate();   // revalidate all the frame components
+	    frame.repaint();      // and repaint the frame
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -63,41 +78,48 @@ public class MonInterface {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		lblNewLabel = new JLabel("Voulez-vous jouez?");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		panelCont.setLayout(cl);
+		intro = new Intro(this);
+		configurationEtudiant = new ConfigurationEtudiant(this);
+		treve = new Treve(configurationEtudiant);
+		melee = new Melee(configurationEtudiant, treve);
+		treve.setMelee(melee);
+		fin = new Fin();
 		
-		btnNon = new JButton("NON");
-		btnNon.setForeground(Color.WHITE);
-		btnNon.setBackground(Color.RED);
+
+		panelCont.add(intro, "1");
+		panelCont.add(configurationEtudiant, "2");
+		panelCont.add(melee,"3");
+		panelCont.add(treve,"4");
+		panelCont.add(fin,"5");
+		cl.show(panelCont, "1");
 		
-		btnOui = new JButton("OUI");
-		btnOui.setBackground(Color.GREEN);
-		btnOui.setForeground(Color.WHITE);
-		groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(118, Short.MAX_VALUE)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
-					.addGap(107))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(76)
-					.addComponent(btnNon)
-					.addPreferredGap(ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-					.addComponent(btnOui)
-					.addGap(97))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(60)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-					.addGap(42)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNon)
-						.addComponent(btnOui))
-					.addContainerGap(63, Short.MAX_VALUE))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		frame.getContentPane().add(panelCont);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
+		
+	}
+	
+	public void update(Observable o, Object arg) {
+		System.out.println("update");
+	}
+	
+	
+	
+	public Treve getTreve() {
+		return treve;
+	}
+
+	public void setTreve(Treve treve) {
+		this.treve = treve;
+	}
+
+	public Melee getMelee() {
+		return melee;
+	}
+
+	public void setMelee(Melee melee) {
+		this.melee = melee;
 	}
 }

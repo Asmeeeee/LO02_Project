@@ -3,11 +3,12 @@ package model.entities;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Observable;
 import java.util.Scanner;
 
 import model.tools.Message;
 
-public class Partie {
+public class Partie extends Observable {
 
     private int round;
     private List<Joueur> lesJoueurs;
@@ -60,6 +61,7 @@ public class Partie {
         }
         System.out.println(Message.tag() +" FIN DE LA CONFIGURATION " +Message.tag());
     }
+    
 
     public void demarrerMelee() {
         System.out.println(Message.tag() + " DEBUT DE LA MELEE "+ Message.tag());
@@ -114,6 +116,26 @@ public class Partie {
             System.out.println(z.getNomZone()+": "+ z.getNombreETC()+" crédit ETC ");
         }
         myObj.nextLine();
+    }
+    
+    public List<Zone> zoneNonControle(){
+    	return new ArrayList<>(Partie.lesZones.stream().filter(z->z.getJoueur()==null).toList());
+    }
+    
+    
+    public void repartitionAutomatique() {
+        for(Joueur j : this.getLesJoueurs()){
+            for(Zone z : this.getLesZones()){
+                for(int i = 0; i < 3; i++){
+                    Etudiant e = EtudiantFactory.getEtudiantMaxSpec(j);
+                    e.setZone(z);
+                    z.getEtudiants().add(e);
+                    if(i%2!=0){
+                        e.setReserviste(true);
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -125,13 +125,11 @@ public class Etudiant {
     }
     
     public void deployer(Zone z){
-        if(this.zone == null){
+        if(this.zone != null){
+        	this.zone.retirerEtudiant(this);
         }
-        else{
-            this.zone.retirerEtudiant(this);
-            this.zone = z;
-            this.zone.ajouterEtudiant(this);
-        }
+        this.zone = z;
+        this.zone.ajouterEtudiant(this);
     }
 
     public void afficherTerminal() {

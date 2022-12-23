@@ -103,6 +103,10 @@ public class Joueur {
         }
         System.out.println(chaine);
     }
+    
+    public List<Etudiant> reserviste() {
+    	return new ArrayList<>(this.getMonEquipe().stream().filter(t -> t.getReserviste()).toList());
+    }
 
     public void menuReserviste() {
         Scanner myObj = new Scanner(System.in);
@@ -140,6 +144,18 @@ public class Joueur {
                 }
             }
         }
+    }
+    
+    public List<Etudiant> getReserviste(){
+    	return new ArrayList<>(this.getMonEquipe().stream().filter(t -> t.getReserviste()).toList());
+    }
+    
+    public List<Etudiant> etuARedeployer(){
+    	List<Etudiant> etu = new ArrayList<>();
+    	for(Zone z : this.mesZones) {
+    		etu.addAll(z.getEtudiants());
+    	}
+    	return etu;
     }
 
     public void redeployerTroupeDUneZoneControlee() {
