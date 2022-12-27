@@ -126,7 +126,12 @@ public class Etudiant {
     
     public void deployer(Zone z){
         if(this.zone != null){
-        	this.zone.retirerEtudiant(this);
+        	if(this.zone.getEtudiants().size() > 1) {
+            	this.zone.retirerEtudiant(this);
+        	}
+        	else {
+        		return;
+        	}
         }
         this.zone = z;
         this.zone.ajouterEtudiant(this);

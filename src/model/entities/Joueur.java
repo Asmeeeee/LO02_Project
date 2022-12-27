@@ -153,10 +153,17 @@ public class Joueur {
     public List<Etudiant> etuARedeployer(){
     	List<Etudiant> etu = new ArrayList<>();
     	for(Zone z : this.mesZones) {
-    		etu.addAll(z.getEtudiants());
+    		if(z.getEtudiants().size() > 1) {
+    			for(Etudiant e : z.getEtudiants()) {
+    				if(e.estVivant()) {
+    					etu.add(e);
+    				}
+    			}
+    		}
     	}
     	return etu;
     }
+   
 
     public void redeployerTroupeDUneZoneControlee() {
         Scanner myObj = new Scanner(System.in);

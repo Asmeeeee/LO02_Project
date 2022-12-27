@@ -8,6 +8,7 @@ import java.util.Observable;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 
 
 public class MonInterface {
@@ -51,6 +52,7 @@ public class MonInterface {
 	public void changePanel(Container c, String num) {
 		cl.show(c, num);
 	}
+
 	
 	
 	public JPanel getPanelCont() {
@@ -79,12 +81,13 @@ public class MonInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		panelCont.setLayout(cl);
+		fin = new Fin();
 		intro = new Intro(this);
 		configurationEtudiant = new ConfigurationEtudiant(this);
 		treve = new Treve(configurationEtudiant);
-		melee = new Melee(configurationEtudiant, treve);
+		melee = new Melee(configurationEtudiant, treve, fin);
 		treve.setMelee(melee);
-		fin = new Fin();
+
 		
 
 		panelCont.add(intro, "1");

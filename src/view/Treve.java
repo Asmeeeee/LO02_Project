@@ -1,6 +1,9 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.GroupLayout;
@@ -12,10 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controller.ControllerBtnTreveDeployer;
+import controller.ControllerBtnTreveRedeployer;
 import controller.ControllerBtnTreveValider;
 import model.entities.Etudiant;
 import model.entities.Zone;
-import java.awt.Color;
 
 public class Treve extends JPanel {
 	
@@ -37,7 +40,17 @@ public class Treve extends JPanel {
 	private JLabel lblMesReservistes;
 	private JLabel lblEtuARedeployer;
 	
+	private JLabel lblReserStats1;
+	private JLabel lblReserStats2;
+	
 	private ControllerBtnTreveValider c;
+	private ControllerBtnTreveDeployer c1;
+	private ControllerBtnTreveRedeployer c2;
+	private JLabel lblEtuRedeployerStats1;
+	private JLabel lblEtuRedeployerStats3;
+	private JLabel lblEtuRedeployerStats2;
+	private JLabel lblEtuRedeployerStats0;
+
 	
 	/**
 	 * Create the panel.
@@ -50,6 +63,7 @@ public class Treve extends JPanel {
 		lblTreve.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
 		comboBoxEtuDeployer = new JComboBox();
+
 		
 		comboBoxZoneDeployer = new JComboBox();
 		
@@ -58,7 +72,9 @@ public class Treve extends JPanel {
 		
 		btnDeployer = new JButton("Déployer");
 		
-		lblJoueur = new JLabel("Joueur 1");
+		lblJoueur = new JLabel();
+		lblJoueur.setText("Joueur 1");
+		lblJoueur.setForeground(Color.blue);
 		lblJoueur.setBackground(new Color(0, 0, 255));
 		lblJoueur.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
@@ -75,63 +91,91 @@ public class Treve extends JPanel {
 		
 		lblEtuARedeployer = new JLabel("Etudiants à redéployer");
 		lblEtuARedeployer.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		lblReserStats1 = new JLabel("Force:  |  Déxtérité:  |  Résistance: ");		
+		lblReserStats2 = new JLabel("Constitution:  |  Initiative:  ");
+		
+		lblEtuRedeployerStats1 = new JLabel("Force:  |  Déxtérité: ");
+		lblEtuRedeployerStats3 = new JLabel("Constitution:  |  Initiative:  ");
+		
+		lblEtuRedeployerStats2 = new JLabel("Résistance: ");
+		
+		lblEtuRedeployerStats0 = new JLabel("Classe: ");
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(32)
-					.addComponent(comboBoxZoneDeployer, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
-					.addComponent(comboBoxZoneRedeployer, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-					.addGap(50))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(77)
-					.addComponent(btnDeployer)
-					.addPreferredGap(ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
-					.addComponent(btnRedeployer)
-					.addGap(84))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(75)
-					.addComponent(comboBoxEtuDeployer, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
-					.addComponent(comboBoxEtuRedeployer, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(comboBoxStratRedeployer, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-					.addGap(33))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(61)
-					.addComponent(lblMesReservistes)
-					.addPreferredGap(ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
-					.addComponent(lblEtuARedeployer)
-					.addGap(62))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblJoueur)
-					.addPreferredGap(ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblTreve, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(btnTreveValider)
-							.addGap(254))))
+							.addGap(77)
+							.addComponent(btnDeployer)
+							.addPreferredGap(ComponentPlacement.RELATED, 201, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(32)
+									.addComponent(comboBoxZoneDeployer, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(61)
+									.addComponent(lblMesReservistes))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(75)
+									.addComponent(comboBoxEtuDeployer, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)))
+							.addGap(198))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblJoueur)
+									.addGap(18, 205, Short.MAX_VALUE))
+								.addComponent(lblReserStats1, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+								.addComponent(lblReserStats2, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblTreve, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnTreveValider))
+							.addGap(59)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblEtuRedeployerStats2, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblEtuARedeployer, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(comboBoxEtuRedeployer, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(comboBoxStratRedeployer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(43)
+										.addComponent(comboBoxZoneRedeployer, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
+									.addComponent(lblEtuRedeployerStats1, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblEtuRedeployerStats0, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+								.addGap(9))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(btnRedeployer)
+								.addGap(47)))
+						.addComponent(lblEtuRedeployerStats3, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
+					.addGap(27))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
 							.addComponent(lblJoueur)
 							.addGap(72)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblMesReservistes)
 								.addComponent(lblEtuARedeployer))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(comboBoxEtuDeployer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBoxStratRedeployer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBoxEtuRedeployer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(comboBoxEtuRedeployer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxStratRedeployer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(comboBoxZoneDeployer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -140,13 +184,33 @@ public class Treve extends JPanel {
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnDeployer)
 								.addComponent(btnRedeployer)))
-						.addComponent(lblTreve))
-					.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-					.addComponent(btnTreveValider)
-					.addGap(48))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
+							.addComponent(lblTreve)))
+					.addGap(22)
+					.addComponent(lblEtuRedeployerStats0)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblReserStats1, GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+						.addComponent(lblEtuRedeployerStats1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblReserStats2, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnTreveValider)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(10)
+							.addComponent(lblEtuRedeployerStats2)
+							.addGap(7)
+							.addComponent(lblEtuRedeployerStats3)))
+					.addGap(18))
 		);
 		setLayout(groupLayout);
-		ControllerBtnTreveDeployer c1 = new ControllerBtnTreveDeployer(this, btnDeployer);
+		c1 = new ControllerBtnTreveDeployer(this, btnDeployer);
+		c2 = new ControllerBtnTreveRedeployer(this, btnRedeployer);
+		this.addEventComboBoxReser(this);
+		this.addEventComboBoxEtuRedeployer(this);
 	}
 	
 	public void reservisteSetEnable(Boolean b) {
@@ -162,12 +226,25 @@ public class Treve extends JPanel {
 		btnRedeployer.setEnabled(b);
 	}
 	
+	public void setJoueur0() {
+		this.iJoueur = 0;
+	}
+	
 	public void setJour() {
 		redeployerSetEnable(true);
 		reservisteSetEnable(true);
+		//------------------------------Affichage
+		if(this.iJoueur == 0) {
+			this.lblJoueur.setText("JOUEUR 1");
+			this.lblJoueur.setForeground(Color.blue);
+		}
+		else {
+			this.lblJoueur.setText("JOUEUR 2");
+			this.lblJoueur.setForeground(Color.red);
+		}
 		//------------------------------Redeployer
 		List<Etudiant> etuRedeployer = this.uneInterface.getPartie().getLesJoueurs().get(iJoueur).etuARedeployer();
-		comboBoxEtuRedeployer.removeAll();
+		comboBoxEtuRedeployer.removeAllItems();
 		for(Etudiant e : etuRedeployer) {
 			if(e!=null) {
 				comboBoxEtuRedeployer.addItem(e.toString());	
@@ -247,7 +324,6 @@ public class Treve extends JPanel {
 		this.lblJoueur.setText("JOUEUR 2");
 		this.lblJoueur.setForeground(Color.red);
 		this.iJoueur++;
-		
 	}
 
 	public JLabel getLblJoueur() {
@@ -275,5 +351,55 @@ public class Treve extends JPanel {
 		c = new ControllerBtnTreveValider(this, this.uneInterface, this.melee, btnTreveValider);
 	}
 	
+	public int getIndexJoueur() {
+		return iJoueur;
+	}
 	
+	public void addEventComboBoxReser(Treve t) {
+		comboBoxEtuDeployer.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		        t.setJourReserStats();
+		    }
+		});
+	}
+	
+	public void addEventComboBoxEtuRedeployer(Treve t) {
+		comboBoxEtuRedeployer.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		        t.setJourEtuRedeployerStats();
+		    }
+		});
+	}
+	
+	public void setJourReserStats() {
+		int iEtu = this.getComboBoxEtu().getSelectedIndex(); 
+		if(iEtu >= 0 ) {
+			List<Etudiant> list = this.getUneInterface().getPartie().getLesJoueurs().get(this.getIndexJoueur()).getReserviste();
+			Etudiant etu = list.get(iEtu);
+			this.lblReserStats1.setText("Force: "+ etu.getForce()+" | Déxtérité:"+etu.getDexterite()+" | Résistance: "+ etu.getResistance());
+			this.lblReserStats2.setText("Constitution: "+etu.getConstitution()+" | Initiative: "+etu.getInitiative());
+		}
+		else {
+			this.lblReserStats1.setText("Force:  |  Déxtérité:  |  Résistance: ");
+			this.lblReserStats2.setText("Constitution:  |  Initiative:  ");
+		}
+	}
+	
+	public void setJourEtuRedeployerStats() {
+		int iEtu = this.getComboBoxEtuRedeployer().getSelectedIndex(); 
+		if(iEtu >= 0 ) {
+			List<Etudiant> list = this.getUneInterface().getPartie().getLesJoueurs().get(this.getIndexJoueur()).etuARedeployer();
+			Etudiant etu = list.get(iEtu);
+			this.lblEtuRedeployerStats0.setText("Classe: "+etu.getClasse());
+			this.lblEtuRedeployerStats1.setText("Force: "+ etu.getForce()+" | Déxtérité:"+etu.getDexterite());
+			this.lblEtuRedeployerStats2.setText("Résistance: "+ etu.getResistance());
+			this.lblEtuRedeployerStats3.setText("Constitution: "+etu.getConstitution()+" | Initiative: "+etu.getInitiative());
+		}
+		else {
+			this.lblEtuRedeployerStats0.setText("Classe: ");
+			this.lblEtuRedeployerStats1.setText("Force:  |  Déxtérité: ");
+			this.lblEtuRedeployerStats2.setText("Résistance: ");
+			this.lblEtuRedeployerStats3.setText("Constitution:  |  Initiative:  ");
+		}
+	}
 }

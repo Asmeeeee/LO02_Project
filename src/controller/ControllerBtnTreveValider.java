@@ -22,7 +22,7 @@ public class ControllerBtnTreveValider {
 		this.melee = m;
 		this.jbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(t.getLblJoueur().getText() == "Joueur 1") {
+				if(t.getIndexJoueur() == 0) {
 					t.changerJoueur();
 					t.setJour();
 				}

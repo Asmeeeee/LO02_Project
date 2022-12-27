@@ -21,6 +21,7 @@ import model.entities.Zone;
 public class Melee extends JPanel {
 	private ConfigurationEtudiant uneInterface;
 	private Treve treve;
+	private Fin fin;
 	
 	private JLabel lblHallesIndustri;
 	private JLabel lblHalleSportive;
@@ -31,14 +32,20 @@ public class Melee extends JPanel {
 	private JPanel panelHalleSportive;
 	
 	private JButton btnDemarrerMelee;
+	private JLabel lblBibliothequeStats;
+	private JLabel lblQAStats;
+	private JLabel lblHIStats;
+	private JLabel lblHSStats;
+	private JLabel lblBEStats;
 	
 
 	/**
 	 * Create the panel.
 	 */
-	public Melee(ConfigurationEtudiant ui, Treve treve) {	
+	public Melee(ConfigurationEtudiant ui, Treve treve, Fin fin) {	
 		this.uneInterface = ui;
 		this.treve = treve;
+		this.fin = fin;
 		
 		JLabel lblNewLabel = new JLabel("MELEE");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 23));
@@ -75,6 +82,16 @@ public class Melee extends JPanel {
 		
 		btnDemarrerMelee = new JButton("Demarrer");
 		
+		lblBibliothequeStats = new JLabel("");
+		
+		lblQAStats = new JLabel("     ");
+		
+		lblHIStats = new JLabel("");
+		
+		lblHSStats = new JLabel("    ");
+		
+		lblBEStats = new JLabel("     ");
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -91,7 +108,10 @@ public class Melee extends JPanel {
 							.addGap(30)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(panelQuartierAdmin, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lnlQuartierAdministratif))))
+								.addComponent(lnlQuartierAdministratif)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(75)
+							.addComponent(lblBibliothequeStats, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)))
 					.addGap(76)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -106,36 +126,62 @@ public class Melee extends JPanel {
 									.addGap(9)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnDemarrerMelee))))
-							.addGap(53)
+										.addComponent(btnDemarrerMelee)
+										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+											.addComponent(lblHIStats, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)))))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(53)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(lblHalleSportive, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+												.addGap(58))
+											.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(lblBureauEtudiant, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+												.addContainerGap())
+											.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(panelBureauEtudiant, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+												.addContainerGap())))
+									.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+										.addGap(77)
+										.addComponent(lblHSStats, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+										.addContainerGap()))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblHalleSportive, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-									.addGap(58))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblBureauEtudiant, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap())
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(panelBureauEtudiant, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+									.addGap(66)
+									.addComponent(lblBEStats, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
 									.addContainerGap())))))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(69)
+					.addComponent(lblQAStats, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(463, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblNewLabel)
+						.addComponent(lblBibliothequeStats, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblBEStats))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(4)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(panelBibliotheque, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-								.addComponent(panelBureauEtudiant, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+								.addComponent(panelBibliotheque, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+								.addComponent(panelBureauEtudiant, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblBibliotheque)
 								.addComponent(lblBureauEtudiant))
-							.addGap(40))
+							.addGap(21)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblQAStats)
+								.addComponent(lblHIStats, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblHSStats))
+							.addGap(6))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(54)
 							.addComponent(btnDemarrerMelee)
@@ -153,7 +199,7 @@ public class Melee extends JPanel {
 		);
 		
 		setLayout(groupLayout);
-		ControllerBtnDemarrerMelee c = new ControllerBtnDemarrerMelee(this, treve, btnDemarrerMelee);
+		ControllerBtnDemarrerMelee c = new ControllerBtnDemarrerMelee(this, treve, fin, btnDemarrerMelee);
 	}
 	
 	public void enleverTousEtu() {
@@ -200,6 +246,31 @@ public class Melee extends JPanel {
 				lesZones.get(iZone).add(jb);	
 			}
 		}
+	}
+	
+	public void setJourStatsZone() {
+		int BiblioETC =  this.getUneInterface().getPartie().getLesZones().get(0).getNombreETC();
+		this.lblBibliothequeStats.setText(BiblioETC+" ETC");
+		
+		int BEETC = this.getUneInterface().getPartie().getLesZones().get(1).getNombreETC();
+		this.lblBEStats.setText(BEETC+" ETC");
+		
+		int QAETC = this.getUneInterface().getPartie().getLesZones().get(2).getNombreETC();
+		this.lblQAStats.setText(QAETC+" ETC");
+		
+		int HIETC = this.getUneInterface().getPartie().getLesZones().get(3).getNombreETC();
+		this.lblHIStats.setText(HIETC+" ETC");
+		
+		int HSETC = this.getUneInterface().getPartie().getLesZones().get(4).getNombreETC();
+		this.lblHSStats.setText(HSETC+" ETC");
+	}
+	
+	public void enleverStatsZone() {
+		this.lblBibliothequeStats.setText("");
+		this.lblBEStats.setText("");
+		this.lblHSStats.setText("");
+		this.lblQAStats.setText("");
+		this.lblHIStats.setText("");
 	}
 
 	public ConfigurationEtudiant getUneInterface() {
