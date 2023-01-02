@@ -9,7 +9,11 @@ import model.strategies.StratDefensive;
 import model.strategies.StratOffensive;
 import model.tools.Message;
 
-
+/**
+ * Class Joueur
+ * @author jerem
+ *
+ */
 public class Joueur {
     
     private int id;
@@ -41,6 +45,10 @@ public class Joueur {
         return this.nombreReserviste;
     }
 
+    /**
+     * Autorise ou non d'inverser le boolean reserviste d un etudiant
+     * @param e
+     */
     public void managerReserviste(Etudiant e){
         if(e.getReserviste()){
             e.setReserviste(false);
@@ -69,20 +77,31 @@ public class Joueur {
         this.points = points;
     }
 
+    /**
+     * Declenche la methode deployerEtudiant de tous les etudiants du joueur
+     * @param le
+     * @param z
+     */
     public void deployerEtudiant(List<Etudiant> le, Zone z){
         for(Etudiant e : le){
             this.deployerEtudiant(e, z);
         }
     }
 
-    public void augmenterCaracteristique(Etudiant e, String attribut){
-        //TODO
-    }
-
+    /**
+     * declenche la methode deployer 
+     * @param e
+     * @param z
+     */
     public void deployerEtudiant(Etudiant e, Zone z){
         e.deployer(z);
     }
 
+    /**
+     * deplace tous le etudiants d'une zone vers une autre
+     * @param z1
+     * @param z2
+     */
     public void reassignerTousEtudiant(Zone z1, Zone z2){
         List<Etudiant> l1 = z1.getEtudiants();
         for(Etudiant e : l1){
@@ -94,6 +113,10 @@ public class Joueur {
         return this.monEquipe;
     }
 
+    /**
+     * Affichage visuel sous forme de string de tout les etudiant de la liste mise en parametre
+     * @param reservistes
+     */
     public void afficherEtudiants(List<Etudiant> reservistes){
         String chaine = "";
         int i = 1;
@@ -104,10 +127,17 @@ public class Joueur {
         System.out.println(chaine);
     }
     
+    /**
+     * retourne tous les reserviste du joueur
+     * @return
+     */
     public List<Etudiant> reserviste() {
     	return new ArrayList<>(this.getMonEquipe().stream().filter(t -> t.getReserviste()).toList());
     }
 
+    /**
+     * interface dans le terminal pour gerer les reservistes
+     */
     public void menuReserviste() {
         Scanner myObj = new Scanner(System.in);
         boolean fini = false;
@@ -150,6 +180,10 @@ public class Joueur {
     	return new ArrayList<>(this.getMonEquipe().stream().filter(t -> t.getReserviste()).toList());
     }
     
+    /**
+     * retourne les etudiant a redeployer sous certaine condition, vivant et au moins dans la zone 
+     * @return
+     */
     public List<Etudiant> etuARedeployer(){
     	List<Etudiant> etu = new ArrayList<>();
     	for(Zone z : this.mesZones) {
@@ -164,7 +198,9 @@ public class Joueur {
     	return etu;
     }
    
-
+    /**
+     * Interface terminal pour redeployer toute une troue d'une zone controle
+     */
     public void redeployerTroupeDUneZoneControlee() {
         Scanner myObj = new Scanner(System.in);
         boolean fini = false;
@@ -200,6 +236,10 @@ public class Joueur {
         }
     }
 
+    /**
+     * interface terminal pour changer la strategie d un etudiant
+     * @param etu
+     */
     private void menuChangerStrategie(Etudiant etu) {
         Scanner myObj = new Scanner(System.in);
         Message.strategies();

@@ -11,6 +11,10 @@ import javax.swing.JPanel;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 
 
+/**
+ * @author jerem
+ *
+ */
 public class MonInterface {
 
 	//-------------------------------Phase 1
@@ -48,6 +52,7 @@ public class MonInterface {
 	public MonInterface() {
 		initialize();
 	}
+	
 	
 	public void changePanel(Container c, String num) {
 		cl.show(c, num);

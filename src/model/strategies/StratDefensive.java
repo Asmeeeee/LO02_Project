@@ -9,9 +9,12 @@ public class StratDefensive extends AbstractStrategy{
         //TODO Auto-generated constructor stub
     }
 
+    /**
+     * joue la mthode soigner
+     */
     @Override
     public void jouer() {
-         this.soigner(this.getEtudiant());
+         this.soigner();
     }
     
 }

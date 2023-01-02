@@ -9,6 +9,9 @@ public class StratOffensive extends AbstractStrategy{
         //TODO Auto-generated constructor stub
     }
 
+    /**
+     * joue la methode attaquer
+     */
     @Override
     public void jouer() {
         this.attaquer();

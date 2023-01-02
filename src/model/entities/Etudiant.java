@@ -6,7 +6,11 @@ import java.util.Scanner;
 import model.strategies.AbstractStrategy;
 import model.strategies.StratOffensive;
 import model.tools.Message;
-
+/**
+ * Class Etudiant
+ * @author jerem
+ *
+ */
 public class Etudiant {
     
     private int id;
@@ -120,10 +124,16 @@ public class Etudiant {
         this.reserviste = b;
     }
 
+    /**
+     * Déclenche la méthode jouer de la stratégie de l'étudiant
+     */
     public void jouer(){
         this.maStrategie.jouer();
     }
     
+    /*
+     * Modifie la zone de l'étudiant, prend en compte le redeploiment
+     */
     public void deployer(Zone z){
         if(this.zone != null){
         	if(this.zone.getEtudiants().size() > 1) {
@@ -137,18 +147,28 @@ public class Etudiant {
         this.zone.ajouterEtudiant(this);
     }
 
+    /**
+     * Affichage visuel dans le terminal
+     */
     public void afficherTerminal() {
         String var = this.reserviste?"oui":"non";
         System.out.println("|classe: "+this.classe+" |(1)force: "+this.force+" |(2)dextérité: "+ this.dexterite+" |(3)resistance " + 
         this.resistance+ " |(4)constitution: "+this.constitution+ " |(5)initiative: "+ this.initiative+ " |(6)réserviste: " + var + "|");
     }
 
+    /**
+     * Affichage visuel sous forme de string
+     * @return String
+     */
     public String afficherTerminal2() {
         String var = this.reserviste?"oui":"non";
         return "|classe: "+this.classe+" |force: "+this.force+" |dextérité: "+ this.dexterite+" |resistance " + 
         this.resistance+ " |constitution: "+this.constitution+ " |initiative: "+ this.initiative+ " |réserviste: " + var + "|"+this.toString()+"|\n";
     }
 
+    /**
+     * processus de mise a niveau de l'étudiant 
+     */
     public void menuCaracteristique(){
         int p;
         boolean pointDepense = false;
@@ -195,6 +215,10 @@ public class Etudiant {
         Message.liner();
     }
 
+    /**
+     * interface dans le terminale pour le deploiment ou redeploiment de l'étudiant
+     * @param lesZones
+     */
     public void deplacer(List<Zone> lesZones){
         Scanner myObj = new Scanner(System.in);
         Message.mapPresentation(lesZones);
@@ -226,6 +250,11 @@ public class Etudiant {
         }
     }
 
+    /**
+     * attribution des points dans la bonne caractéristique
+     * @param reponse
+     * @param p
+     */
     public void setCaracteristique(String reponse, int p) {
         if(this.joueur.getPoints() < p){
             Message.notEnoughCredit();
@@ -305,9 +334,13 @@ public class Etudiant {
         }
     }
 
+    /**
+     * change l'état de l'étudiant en mort, et le retire de la zone
+     */
     public void mourir() {
         this.estVivant = false;
         this.zone.getEtudiants().remove(this);
+        this.zone = null;
     }
     
 }

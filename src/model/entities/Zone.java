@@ -6,6 +6,11 @@ import java.util.List;
 import model.tools.ComparatorEtc;
 import model.tools.ComparatorInitiative;
 
+/**
+ * Class Zone
+ * @author jerem
+ *
+ */
 public class Zone implements Comparable{
 
     private String nomZone;
@@ -39,14 +44,25 @@ public class Zone implements Comparable{
         return this.nomZone;
     }
 
+    /*
+     * retire un etudiant de la zone actuelle
+     */
     public void retirerEtudiant(Etudiant e){
         this.etudiantList.remove(e);
     }
-
+    /**
+     * ajoute un etudiant dans la zone actuelle
+     * @param e
+     */
     public void ajouterEtudiant(Etudiant e){
         this.etudiantList.add(e);
     }
 
+    /**
+     * retourne l'étudiant allié du soigneur ayant le moins de vie
+     * @param soigneur
+     * @return
+     */
     public Etudiant getEtudiantMoinsDeVieAllie(Etudiant soigneur){
         ComparatorEtc comparatorEtc = new ComparatorEtc();
         List<Etudiant> l1 = this.etudiantList;
@@ -60,6 +76,11 @@ public class Zone implements Comparable{
         return null;
     }
 
+    /**
+     * retourne l'étudiant ennemie de l'attaquant ayant le moins de vie
+     * @param attaquant
+     * @return
+     */
     public Etudiant getEtudiantMoinsDeVieEnnemie(Etudiant attaquant){
         ComparatorEtc comparatorEtc = new ComparatorEtc();
         List<Etudiant> l1 = this.etudiantList;
@@ -71,6 +92,10 @@ public class Zone implements Comparable{
         return null;
     }
 
+    /**
+     * déclenche la méthode jouer de l'étudiant à l'index i.
+     * @param i
+     */
     public void jouerLaZone(int i){
         //trier la liste d etudiant par initiative
         ComparatorInitiative comparatorInitiative = new ComparatorInitiative();
@@ -89,7 +114,11 @@ public class Zone implements Comparable{
         }
     }
 
-    //TODO reparer la methode, la faire avec la boucle while. Il y a un probleme index out of range dans un cas exeptionnelle. source inconnue
+    /**
+     * retourne un boolean confirmant ou non la présence d'étudiant ennemie
+     * @param j
+     * @return
+     */
     public boolean verifierJoueurEnnemie(Joueur j){
         boolean res = true;
         //int i = 0;
@@ -109,7 +138,9 @@ public class Zone implements Comparable{
         return res;
     }
 
-
+    /**
+     * méthode compareTo indexé sur la taille de la liste
+     */
     @Override
     public int compareTo(Object o) {
         if(o instanceof Zone){

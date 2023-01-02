@@ -18,7 +18,6 @@ public class Fin extends JPanel {
 	}
 	
 	public Fin() {
-		
 		lblFin = new JLabel("FIN");
 		lblFin.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		

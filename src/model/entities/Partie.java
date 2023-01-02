@@ -8,6 +8,11 @@ import java.util.Scanner;
 
 import model.tools.Message;
 
+/**
+ * Class Partie, regroupe toutes les informations de la partie
+ * @author jerem
+ *
+ */
 public class Partie extends Observable {
 
     private int round;
@@ -27,6 +32,9 @@ public class Partie extends Observable {
         this.lesZones = new ArrayList<>();
     }
 
+    /**
+     * instancie les zone et les joueurs
+     */
     public void setJeux(){
         System.out.println("Création des joueurs");
         Joueur j1 = new Joueur(this, 1);
@@ -41,6 +49,9 @@ public class Partie extends Observable {
         this.lesZones =  Arrays.asList(z1, z2, z3, z4, z5);
     }
 
+    /**
+     * Interface terminal pour configurer tous les etudiant des joueurs
+     */
     public void configurationEtudiant(){
         Scanner myObj = new Scanner(System.in);   
         //Pour chaque joueur
@@ -63,6 +74,9 @@ public class Partie extends Observable {
     }
     
 
+    /**
+     * demarre la melee
+     */
     public void demarrerMelee() {
         System.out.println(Message.tag() + " DEBUT DE LA MELEE "+ Message.tag());
         boolean enCours = true;
@@ -97,6 +111,9 @@ public class Partie extends Observable {
         System.out.println(Message.tag() +" FIN DE LA MELEE "+Message.tag());
     }
 
+    /**
+     * demarre la treve, interface terminal pour configurer, deployer, redeployer des etudiant
+     */
     public void demarrerTreve() {
         System.out.println(Message.tag() + " DEBUT DE LA TREVE "+ Message.tag());
         Scanner myObj = new Scanner(System.in);   
@@ -110,6 +127,9 @@ public class Partie extends Observable {
         System.out.println(Message.tag() +" FIN DE LA TREVE "+Message.tag());
     }
 
+    /**
+     * affichage terminale des credit ETC de chaque zone
+     */
     private void afficherCreditETCParZone() {
         Scanner myObj = new Scanner(System.in);
         for(Zone z : Partie.lesZones){
@@ -118,11 +138,17 @@ public class Partie extends Observable {
         myObj.nextLine();
     }
     
+    /**
+     * renvoi la liste des zones non controlee
+     * @return
+     */
     public List<Zone> zoneNonControle(){
     	return new ArrayList<>(Partie.lesZones.stream().filter(z->z.getJoueur()==null).toList());
     }
     
-    
+    /**
+     * repartie 3 etudiant maxSpec dans chaque zone
+     */
     public void repartitionAutomatique() {
         for(Joueur j : this.getLesJoueurs()){
             for(Zone z : this.getLesZones()){

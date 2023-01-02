@@ -4,6 +4,11 @@ import java.util.Random;
 
 import model.entities.Etudiant;
 
+/**
+ * Class abstract AbstractStrategy
+ * @author jerem
+ *
+ */
 public abstract class AbstractStrategy{
 
     private Etudiant etudiant;
@@ -17,8 +22,14 @@ public abstract class AbstractStrategy{
         return this.etudiant;
     }
 
+    /**
+     * signature de méthode forcant les classe héritant de celle-ci de défénir cette méthode jouer
+     */
     public abstract void jouer();
 
+    /**
+     * méthode attaquer, pour plus d'information voir sujet
+     */
     public void attaquer(){
         Random r = new Random();
         //joueur a attaquer
@@ -42,10 +53,14 @@ public abstract class AbstractStrategy{
         }
     }
 
-    public void soigner(Etudiant soigneur){
+    /**
+     * méthode soigner, pour plus d'information voir sujet
+     * @param soigneur
+     */
+    public void soigner(){
         Random r = new Random();
         //joueur a soigner
-        Etudiant etuSoigne = this.etudiant.getZone().getEtudiantMoinsDeVieAllie(soigneur);
+        Etudiant etuSoigne = this.etudiant.getZone().getEtudiantMoinsDeVieAllie(this.etudiant);
         //calcul si le soin est réussi
         int low = 0;
         int high = 100;

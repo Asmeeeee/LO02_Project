@@ -4,6 +4,11 @@ import java.util.List;
 
 import model.entities.Zone;
 
+/**
+ * Class stockant differentes lignes textuelles récurrentes
+ * @author jerem
+ *
+ */
 public abstract class Message{
     
     public static void IncorrectInput(){

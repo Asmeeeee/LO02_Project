@@ -9,13 +9,16 @@ public class StratAleatoire extends AbstractStrategy{
         //TODO Auto-generated constructor stub
     }
 
+    /**
+     * joue de facon aleatoire soit la methode attaquer soit soigner
+     */
     @Override
     public void jouer() {
         if(Math.round( Math.random()) == 1){
             this.attaquer();
         }
         else{
-            this.soigner(this.getEtudiant());
+            this.soigner();
         } 
     }
     

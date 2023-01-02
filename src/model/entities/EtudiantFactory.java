@@ -1,5 +1,9 @@
 package model.entities;
-
+/**
+ * Fichier permettant la crétion des Etudiants
+ * @author jerem
+ *
+ */
 public abstract class EtudiantFactory {
 
     public static void createEtudiant(Joueur j){
@@ -12,11 +16,21 @@ public abstract class EtudiantFactory {
         getMaitreDuGobi(j);
     }
 
+    /**
+     * Constructeur retournant un étudiant basique attribué au joueur j
+     * @param j
+     * @return
+     */
     public static Etudiant getEtudiant(Joueur j){
         Etudiant e = new Etudiant(j);
         return e;
     }
 
+    /**
+     * Constructeur retournant un étudiant maxSpec attribué au joueur j
+     * @param j
+     * @return
+     */
     public static Etudiant getEtudiantMaxSpec(Joueur j){
         Etudiant e = new Etudiant(j);
         e.setForce(10);
@@ -27,6 +41,11 @@ public abstract class EtudiantFactory {
         return e;
     }
 
+    /**
+     * Constructeur retournant un étudiant elite attribué au joueur j
+     * @param j
+     * @return
+     */
     public static Etudiant getEtudiantElite(Joueur j){
         Etudiant e = new Etudiant(j);
         e.setForce(1);
@@ -38,6 +57,11 @@ public abstract class EtudiantFactory {
         return e;
     }
 
+    /**
+     * Constructeur retournant un maitre du gobi attribué au joueur j
+     * @param j
+     * @return
+     */
     public static Etudiant getMaitreDuGobi(Joueur j){
         Etudiant e = new Etudiant(j);
         e.setForce(2);
